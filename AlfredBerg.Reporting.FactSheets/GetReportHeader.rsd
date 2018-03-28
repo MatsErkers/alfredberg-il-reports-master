@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>ODEN_Report</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@language">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>AnsiStringFixedLength</rd:DbType>
+        </DataSetParameter>
+        <DataSetParameter Name="@textId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Int32</rd:DbType>
+        </DataSetParameter>
+        <DataSetParameter Name="@reportId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Int32</rd:DbType>
+        </DataSetParameter>
+        <DataSetParameter Name="@shareClassId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Int32</rd:DbType>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandType>StoredProcedure</CommandType>
+      <CommandText>report.getReportHeader</CommandText>
+      <rd:DesignerState>
+        <QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational">
+          <Functions>
+            <SProc ColumnOwner="getReportHeader" Schema="report">
+              <Parameter Name="@language">
+                <Null />
+              </Parameter>
+              <Parameter Name="@textId">
+                <Null />
+              </Parameter>
+              <Parameter Name="@reportId">
+                <Null />
+              </Parameter>
+              <Parameter Name="@shareClassId">
+                <Null />
+              </Parameter>
+            </SProc>
+          </Functions>
+          <SelectedColumns>
+            <ColumnExpression Schema="report" ColumnOwner="getReportHeader" ColumnName="ReportId" />
+            <ColumnExpression Schema="report" ColumnOwner="getReportHeader" ColumnName="" />
+            <ColumnExpression Schema="report" ColumnOwner="getReportHeader" ColumnName="TextId" />
+            <ColumnExpression Schema="report" ColumnOwner="getReportHeader" ColumnName="" />
+          </SelectedColumns>
+        </QueryDefinition>
+      </rd:DesignerState>
+    </Query>
+    <Fields>
+      <Field Name="ReportId">
+        <DataField>ReportId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="lang">
+        <DataField>lang</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="TextId">
+        <DataField>TextId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Text">
+        <DataField>Text</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="HasBenchmark">
+        <DataField>HasBenchmark</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

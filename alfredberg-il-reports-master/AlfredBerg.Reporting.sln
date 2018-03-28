@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "AlfredBerg.Reporting.Risks", "AlfredBerg.Reporting.Risks\AlfredBerg.Reporting.Risks.rptproj", "{C8D65E3F-F987-41FA-8525-9D8120CDB56F}"
+EndProject
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "AlfredBerg.Reporting.FactSheets", "AlfredBerg.Reporting.FactSheets\AlfredBerg.Reporting.FactSheets.rptproj", "{6328D5E2-02AA-48D3-80AA-239CAF0AE0DC}"
+EndProject
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "AlfredBerg.Reporting.PerformanceReport", "AlfredBerg.Reporting.DailyPerformanceReport\AlfredBerg.Reporting.PerformanceReport.rptproj", "{9A8F0663-6E66-46D9-B1B4-B6BB9F7C5F66}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DBBackup", "DBBackup", "{88A1217D-4039-4736-AEEB-15B6BE7CB533}"
+	ProjectSection(SolutionItems) = preProject
+		DBBackup\Reports.bak = DBBackup\Reports.bak
+	EndProjectSection
+EndProject
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "AlfredBerg.Sample.Reports", "Report Project1\AlfredBerg.Sample.Reports.rptproj", "{F0F28812-E9BB-402F-99DB-DBB64DEE9B30}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8D65E3F-F987-41FA-8525-9D8120CDB56F}.Debug|Default.ActiveCfg = Debug
+		{C8D65E3F-F987-41FA-8525-9D8120CDB56F}.Debug|Default.Build.0 = Debug
+		{C8D65E3F-F987-41FA-8525-9D8120CDB56F}.Debug|Default.Deploy.0 = Debug
+		{C8D65E3F-F987-41FA-8525-9D8120CDB56F}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{C8D65E3F-F987-41FA-8525-9D8120CDB56F}.DebugLocal|Default.Build.0 = DebugLocal
+		{C8D65E3F-F987-41FA-8525-9D8120CDB56F}.Release|Default.ActiveCfg = Release
+		{C8D65E3F-F987-41FA-8525-9D8120CDB56F}.Release|Default.Build.0 = Release
+		{C8D65E3F-F987-41FA-8525-9D8120CDB56F}.Release|Default.Deploy.0 = Release
+		{6328D5E2-02AA-48D3-80AA-239CAF0AE0DC}.Debug|Default.ActiveCfg = Debug
+		{6328D5E2-02AA-48D3-80AA-239CAF0AE0DC}.Debug|Default.Build.0 = Debug
+		{6328D5E2-02AA-48D3-80AA-239CAF0AE0DC}.Debug|Default.Deploy.0 = Debug
+		{6328D5E2-02AA-48D3-80AA-239CAF0AE0DC}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{6328D5E2-02AA-48D3-80AA-239CAF0AE0DC}.DebugLocal|Default.Build.0 = DebugLocal
+		{6328D5E2-02AA-48D3-80AA-239CAF0AE0DC}.Release|Default.ActiveCfg = Release
+		{6328D5E2-02AA-48D3-80AA-239CAF0AE0DC}.Release|Default.Build.0 = Release
+		{6328D5E2-02AA-48D3-80AA-239CAF0AE0DC}.Release|Default.Deploy.0 = Release
+		{9A8F0663-6E66-46D9-B1B4-B6BB9F7C5F66}.Debug|Default.ActiveCfg = Debug
+		{9A8F0663-6E66-46D9-B1B4-B6BB9F7C5F66}.Debug|Default.Build.0 = Debug
+		{9A8F0663-6E66-46D9-B1B4-B6BB9F7C5F66}.Debug|Default.Deploy.0 = Debug
+		{9A8F0663-6E66-46D9-B1B4-B6BB9F7C5F66}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{9A8F0663-6E66-46D9-B1B4-B6BB9F7C5F66}.DebugLocal|Default.Build.0 = DebugLocal
+		{9A8F0663-6E66-46D9-B1B4-B6BB9F7C5F66}.Release|Default.ActiveCfg = Release
+		{9A8F0663-6E66-46D9-B1B4-B6BB9F7C5F66}.Release|Default.Build.0 = Release
+		{9A8F0663-6E66-46D9-B1B4-B6BB9F7C5F66}.Release|Default.Deploy.0 = Release
+		{F0F28812-E9BB-402F-99DB-DBB64DEE9B30}.Debug|Default.ActiveCfg = Debug
+		{F0F28812-E9BB-402F-99DB-DBB64DEE9B30}.Debug|Default.Build.0 = Debug
+		{F0F28812-E9BB-402F-99DB-DBB64DEE9B30}.Debug|Default.Deploy.0 = Debug
+		{F0F28812-E9BB-402F-99DB-DBB64DEE9B30}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{F0F28812-E9BB-402F-99DB-DBB64DEE9B30}.DebugLocal|Default.Build.0 = DebugLocal
+		{F0F28812-E9BB-402F-99DB-DBB64DEE9B30}.Release|Default.ActiveCfg = Release
+		{F0F28812-E9BB-402F-99DB-DBB64DEE9B30}.Release|Default.Build.0 = Release
+		{F0F28812-E9BB-402F-99DB-DBB64DEE9B30}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3FB0C163-B5DF-45E9-A6CE-F17D45A8807B}
+	EndGlobalSection
+EndGlobal

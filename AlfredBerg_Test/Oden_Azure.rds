@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Oden_Azure">
+  <ConnectionProperties>
+    <Extension>SQLAZURE</Extension>
+    <ConnectString>Data Source=52.166.220.175;Initial Catalog=ODEN_Reports;Encrypt=True;TrustServerCertificate=True</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>15d15ba3-7ad9-480b-a163-b4f0b49d39e6</DataSourceID>
+</RptDataSource>

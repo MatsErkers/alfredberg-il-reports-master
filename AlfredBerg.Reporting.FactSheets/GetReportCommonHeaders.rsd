@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>ODEN_Report</DataSourceReference>
+      <CommandText>SELECT
+  report.ReportCommon.ReportId AS [ReportCommon ReportId]
+  ,report.ReportCommon.[Language]
+  ,report.ReportHeading.ReportId AS [ReportHeading ReportId]
+  ,report.ReportHeading.TextId
+  ,report.ReportHeading.Text
+FROM
+  report.ReportHeading
+  INNER JOIN report.ReportCommon
+    ON report.ReportHeading.ReportId = report.ReportCommon.ReportId</CommandText>
+      <rd:DesignerState>
+        <QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational">
+          <AutoJoin>False</AutoJoin>
+          <SelectedColumns>
+            <ColumnExpression Schema="report" ColumnOwner="ReportCommon" ColumnName="ReportId" />
+            <ColumnExpression Schema="report" ColumnOwner="ReportCommon" ColumnName="Language" />
+            <ColumnExpression Schema="report" ColumnOwner="ReportHeading" ColumnName="ReportId" />
+            <ColumnExpression Schema="report" ColumnOwner="ReportHeading" ColumnName="TextId" />
+            <ColumnExpression Schema="report" ColumnOwner="ReportHeading" ColumnName="Text" />
+          </SelectedColumns>
+          <Joins>
+            <Join Type="CROSS JOIN" ColumnOwner="ReportHeading" Schema="report" />
+            <Join Type="INNER JOIN" ColumnOwner="ReportCommon" Schema="report">
+              <On>
+                <From ColumnOwner="ReportHeading" Schema="report" ColumnName="ReportId" />
+                <To ColumnOwner="ReportCommon" Schema="report" ColumnName="ReportId" />
+              </On>
+            </Join>
+          </Joins>
+        </QueryDefinition>
+      </rd:DesignerState>
+    </Query>
+  </DataSet>
+</SharedDataSet>

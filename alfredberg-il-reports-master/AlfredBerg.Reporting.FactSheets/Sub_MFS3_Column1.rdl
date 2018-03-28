@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report MustUnderstand="df" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:df="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/defaultfontfamily">
+  <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSets>
+    <DataSet Name="ShareClass">
+      <SharedDataSet>
+        <SharedDataSetReference>ListShareClass</SharedDataSetReference>
+      </SharedDataSet>
+      <Fields>
+        <Field Name="PortfolioId">
+          <DataField>PortfolioId</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Id">
+          <DataField>Id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Language">
+      <SharedDataSet>
+        <SharedDataSetReference>GetLanguage</SharedDataSetReference>
+      </SharedDataSet>
+      <Fields>
+        <Field Name="Language">
+          <DataField>Language</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Subreport Name="T8">
+            <ReportName>Sub_T8</ReportName>
+            <Parameters>
+              <Parameter Name="Language">
+                <Value>=Parameters!Language.Value</Value>
+              </Parameter>
+              <Parameter Name="ShareClass">
+                <Value>=Parameters!ShareClass.Value</Value>
+              </Parameter>
+              <Parameter Name="Date">
+                <Value>=Parameters!Date.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Height>1.5cm</Height>
+            <Width>7cm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Subreport Name="C2">
+            <ReportName>Sub_C2</ReportName>
+            <Parameters>
+              <Parameter Name="GetMonth">
+                <Value>=Parameters!Date.Value</Value>
+              </Parameter>
+              <Parameter Name="ShareClassId">
+                <Value>=Parameters!ShareClass.Value</Value>
+              </Parameter>
+              <Parameter Name="Language">
+                <Value>=Parameters!Language.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>1.67639cm</Top>
+            <Height>1.5cm</Height>
+            <Width>7cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Subreport Name="C3">
+            <ReportName>Sub_C3</ReportName>
+            <Parameters>
+              <Parameter Name="reportDate">
+                <Value>=Parameters!Date.Value</Value>
+              </Parameter>
+              <Parameter Name="ShareClassId">
+                <Value>=Parameters!ShareClass.Value</Value>
+              </Parameter>
+              <Parameter Name="Language">
+                <Value>=Parameters!Language.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>3.35278cm</Top>
+            <Height>1.5cm</Height>
+            <Width>7cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Subreport Name="C4">
+            <ReportName>Sub_C4</ReportName>
+            <Parameters>
+              <Parameter Name="ReportDate">
+                <Value>=Parameters!Date.Value</Value>
+              </Parameter>
+              <Parameter Name="Language">
+                <Value>=Parameters!Language.Value</Value>
+              </Parameter>
+              <Parameter Name="ShareClassId">
+                <Value>=Parameters!ShareClass.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>5.02917cm</Top>
+            <Height>1.5cm</Height>
+            <Width>7cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+        </ReportItems>
+        <Height>2.57054in</Height>
+        <Style />
+      </Body>
+      <Width>2.75591in</Width>
+      <Page>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
+        <LeftMargin>2cm</LeftMargin>
+        <RightMargin>2cm</RightMargin>
+        <TopMargin>2cm</TopMargin>
+        <BottomMargin>2cm</BottomMargin>
+        <ColumnSpacing>0.13cm</ColumnSpacing>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="Language">
+      <DataType>String</DataType>
+      <Prompt>Language</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Date">
+      <DataType>DateTime</DataType>
+      <Prompt>Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ShareClass">
+      <DataType>Integer</DataType>
+      <Prompt>ShareClass</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>Language</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>Date</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>ShareClass</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>2e9c1599-e151-4f04-9070-243c00ef828d</rd:ReportID>
+</Report>

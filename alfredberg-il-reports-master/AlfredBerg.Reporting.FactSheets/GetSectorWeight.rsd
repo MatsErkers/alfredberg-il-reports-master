@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>ODEN_Report</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@ReportDate">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Date</rd:DbType>
+        </DataSetParameter>
+        <DataSetParameter Name="@ShareClassId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Int32</rd:DbType>
+        </DataSetParameter>
+        <DataSetParameter Name="@Language">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>AnsiStringFixedLength</rd:DbType>
+        </DataSetParameter>
+        <DataSetParameter Name="@SectorTier">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Int16</rd:DbType>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandType>StoredProcedure</CommandType>
+      <CommandText>report.GetAB_MonthlyFactSheet_SectorWeight</CommandText>
+      <rd:DesignerState>
+        <QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational">
+          <Functions>
+            <SProc ColumnOwner="GetAB_MonthlyFactSheet_SectorWeight" Schema="report">
+              <Parameter Name="@ReportDate">
+                <Null />
+              </Parameter>
+              <Parameter Name="@ShareClassId">
+                <Null />
+              </Parameter>
+              <Parameter Name="@Language">
+                <Null />
+              </Parameter>
+              <Parameter Name="@SectorTier">
+                <Null />
+              </Parameter>
+            </SProc>
+          </Functions>
+          <SelectedColumns>
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_MonthlyFactSheet_SectorWeight" ColumnName="Date" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_MonthlyFactSheet_SectorWeight" ColumnName="BucketWeight" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_MonthlyFactSheet_SectorWeight" ColumnName="Bucket" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_MonthlyFactSheet_SectorWeight" ColumnName="langBucket" />
+          </SelectedColumns>
+        </QueryDefinition>
+      </rd:DesignerState>
+    </Query>
+    <Fields>
+      <Field Name="Date">
+        <DataField>Date</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="SectorTier1">
+        <DataField>SectorTier1</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="SectorTier2">
+        <DataField>SectorTier2</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Bucket">
+        <DataField>Bucket</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="langBucket">
+        <DataField>langBucket</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Name">
+        <DataField>Name</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Weight">
+        <DataField>Weight</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

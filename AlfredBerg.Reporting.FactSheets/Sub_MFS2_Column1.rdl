@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report MustUnderstand="df" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:df="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/defaultfontfamily">
+  <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSets>
+    <DataSet Name="ListShareClass">
+      <SharedDataSet>
+        <SharedDataSetReference>ListShareClass</SharedDataSetReference>
+      </SharedDataSet>
+      <Fields>
+        <Field Name="PortfolioId">
+          <DataField>PortfolioId</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Id">
+          <DataField>Id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Language">
+      <SharedDataSet>
+        <SharedDataSetReference>GetLanguage</SharedDataSetReference>
+      </SharedDataSet>
+      <Fields>
+        <Field Name="Language">
+          <DataField>Language</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Subreport Name="C5">
+            <ReportName>Sub_C5</ReportName>
+            <Parameters>
+              <Parameter Name="reportDate">
+                <Value>=Parameters!Date.Value</Value>
+              </Parameter>
+              <Parameter Name="ShareClassId">
+                <Value>=Parameters!ShareClass.Value</Value>
+              </Parameter>
+              <Parameter Name="Language">
+                <Value>=Parameters!Language.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Left>0.01053cm</Left>
+            <Height>1.5cm</Height>
+            <Width>7cm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Subreport Name="T6">
+            <ReportName>Sub_T6</ReportName>
+            <Parameters>
+              <Parameter Name="Language">
+                <Value>=Parameters!Language.Value</Value>
+              </Parameter>
+              <Parameter Name="ReportDate">
+                <Value>=Parameters!Date.Value</Value>
+              </Parameter>
+              <Parameter Name="ShareClassId">
+                <Value>=Parameters!ShareClass.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>1.85719cm</Top>
+            <Left>0.02106cm</Left>
+            <Height>1.5cm</Height>
+            <Width>7cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Subreport Name="T7">
+            <ReportName>Sub_T7</ReportName>
+            <Parameters>
+              <Parameter Name="Language">
+                <Value>=Parameters!Language.Value</Value>
+              </Parameter>
+              <Parameter Name="ShareClassId">
+                <Value>=Parameters!ShareClass.Value</Value>
+              </Parameter>
+              <Parameter Name="ReportDate">
+                <Value>=Parameters!Date.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>3.35719cm</Top>
+            <Left>0.03159cm</Left>
+            <Height>1.5cm</Height>
+            <Width>7cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+        </ReportItems>
+        <Height>1.91228in</Height>
+        <Style />
+      </Body>
+      <Width>2.76834in</Width>
+      <Page>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
+        <LeftMargin>2cm</LeftMargin>
+        <RightMargin>2cm</RightMargin>
+        <TopMargin>2cm</TopMargin>
+        <BottomMargin>2cm</BottomMargin>
+        <ColumnSpacing>0.13cm</ColumnSpacing>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="Date">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>2017-02-27 00:00:00</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ShareClass">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>44</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ShareClass</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Language">
+      <DataType>String</DataType>
+      <Prompt>Language</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>Date</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>ShareClass</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>Language</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>eb6cdd99-99f3-4dff-ad45-5d2e3102ee62</rd:ReportID>
+</Report>

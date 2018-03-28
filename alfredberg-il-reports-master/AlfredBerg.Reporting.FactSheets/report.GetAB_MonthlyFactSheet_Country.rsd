@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>ODEN_Report</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@reportDate">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Date</rd:DbType>
+        </DataSetParameter>
+        <DataSetParameter Name="@ShareClassId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Int32</rd:DbType>
+        </DataSetParameter>
+        <DataSetParameter Name="@Language">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>AnsiStringFixedLength</rd:DbType>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandType>StoredProcedure</CommandType>
+      <CommandText>report.GetAB_MonthlyFactSheet_Country</CommandText>
+      <rd:DesignerState>
+        <QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational">
+          <Functions>
+            <SProc ColumnOwner="GetAB_MonthlyFactSheet_Country" Schema="report">
+              <Parameter Name="@reportDate">
+                <Null />
+              </Parameter>
+              <Parameter Name="@ShareClassId">
+                <Null />
+              </Parameter>
+              <Parameter Name="@Language">
+                <Null />
+              </Parameter>
+            </SProc>
+          </Functions>
+          <SelectedColumns>
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_MonthlyFactSheet_Country" ColumnName="PortfolioId" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_MonthlyFactSheet_Country" ColumnName="Country" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_MonthlyFactSheet_Country" ColumnName="weight" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_MonthlyFactSheet_Country" ColumnName="PositionDate" />
+          </SelectedColumns>
+        </QueryDefinition>
+      </rd:DesignerState>
+    </Query>
+    <Fields>
+      <Field Name="PortfolioId">
+        <DataField>PortfolioId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Country">
+        <DataField>Country</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="weight">
+        <DataField>weight</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="PositionDate">
+        <DataField>PositionDate</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

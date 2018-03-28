@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>ODEN_Report</DataSourceReference>
+      <CommandText>SELECT
+  Instrument.Id AS [Instrument Id]
+  ,Instrument.CodeSourceId AS [Instrument CodeSourceId]
+  ,Instrument.DataSourceId AS [Instrument DataSourceId]
+  ,Instrument.Name
+  ,Instrument.ShortName
+  ,Instrument.LongName
+  ,Instrument.DescriptionBloomberg
+  ,Instrument.CurrencyCode
+  ,Instrument.NominalCurrencyCode
+  ,Instrument.ISIN
+  ,Issuer.Id AS [Issuer Id]
+  ,Issuer.CodeSourceId AS [Issuer CodeSourceId]
+  ,Issuer.DataSourceId AS [Issuer DataSourceId]
+  ,Issuer.SysCreatedAt
+  ,Issuer.IssuerName
+  ,Issuer.CountryRisk
+  ,Issuer.CountryDomicile
+  ,Issuer.CountryIncorporation
+  ,Issuer.Leicode
+FROM
+  Issuer
+  INNER JOIN Instrument
+    ON Issuer.Id = Instrument.Id AND Issuer.CodeSourceId = Instrument.CodeSourceId</CommandText>
+      <rd:DesignerState>
+        <QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational">
+          <AutoJoin>False</AutoJoin>
+          <SelectedColumns>
+            <ColumnExpression ColumnOwner="Instrument" ColumnName="Id" />
+            <ColumnExpression ColumnOwner="Instrument" ColumnName="CodeSourceId" />
+            <ColumnExpression ColumnOwner="Instrument" ColumnName="DataSourceId" />
+            <ColumnExpression ColumnOwner="Instrument" ColumnName="Name" />
+            <ColumnExpression ColumnOwner="Instrument" ColumnName="ShortName" />
+            <ColumnExpression ColumnOwner="Instrument" ColumnName="LongName" />
+            <ColumnExpression ColumnOwner="Instrument" ColumnName="DescriptionBloomberg" />
+            <ColumnExpression ColumnOwner="Instrument" ColumnName="CurrencyCode" />
+            <ColumnExpression ColumnOwner="Instrument" ColumnName="NominalCurrencyCode" />
+            <ColumnExpression ColumnOwner="Instrument" ColumnName="ISIN" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="Id" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="CodeSourceId" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="DataSourceId" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="SysCreatedAt" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="IssuerName" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="CountryRisk" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="CountryDomicile" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="CountryIncorporation" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="Leicode" />
+          </SelectedColumns>
+          <Joins>
+            <Join Type="CROSS JOIN" ColumnOwner="Issuer" />
+            <Join Type="INNER JOIN" ColumnOwner="Instrument">
+              <On>
+                <From ColumnOwner="Issuer" ColumnName="Id" />
+                <To ColumnOwner="Instrument" ColumnName="Id" />
+              </On>
+              <On>
+                <From ColumnOwner="Issuer" ColumnName="CodeSourceId" />
+                <To ColumnOwner="Instrument" ColumnName="CodeSourceId" />
+              </On>
+            </Join>
+          </Joins>
+        </QueryDefinition>
+      </rd:DesignerState>
+    </Query>
+    <Fields>
+      <Field Name="Instrument_Id">
+        <DataField>Instrument Id</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Instrument_CodeSourceId">
+        <DataField>Instrument CodeSourceId</DataField>
+        <rd:TypeName>System.Int16</rd:TypeName>
+      </Field>
+      <Field Name="Instrument_DataSourceId">
+        <DataField>Instrument DataSourceId</DataField>
+        <rd:TypeName>System.Int16</rd:TypeName>
+      </Field>
+      <Field Name="Name">
+        <DataField>Name</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="ShortName">
+        <DataField>ShortName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="LongName">
+        <DataField>LongName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="DescriptionBloomberg">
+        <DataField>DescriptionBloomberg</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CurrencyCode">
+        <DataField>CurrencyCode</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="NominalCurrencyCode">
+        <DataField>NominalCurrencyCode</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="ISIN">
+        <DataField>ISIN</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Issuer_Id">
+        <DataField>Issuer Id</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Issuer_CodeSourceId">
+        <DataField>Issuer CodeSourceId</DataField>
+        <rd:TypeName>System.Int16</rd:TypeName>
+      </Field>
+      <Field Name="Issuer_DataSourceId">
+        <DataField>Issuer DataSourceId</DataField>
+        <rd:TypeName>System.Int16</rd:TypeName>
+      </Field>
+      <Field Name="SysCreatedAt">
+        <DataField>SysCreatedAt</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="IssuerName">
+        <DataField>IssuerName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CountryRisk">
+        <DataField>CountryRisk</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CountryDomicile">
+        <DataField>CountryDomicile</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CountryIncorporation">
+        <DataField>CountryIncorporation</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Leicode">
+        <DataField>Leicode</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

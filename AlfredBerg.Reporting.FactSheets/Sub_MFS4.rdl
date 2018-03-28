@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report MustUnderstand="df" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:df="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/defaultfontfamily">
+  <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSets>
+    <DataSet Name="ListLanguages">
+      <SharedDataSet>
+        <SharedDataSetReference>GetLanguage</SharedDataSetReference>
+      </SharedDataSet>
+      <Fields>
+        <Field Name="Language">
+          <DataField>Language</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="ListSharedClasses">
+      <SharedDataSet>
+        <SharedDataSetReference>ListShareClass</SharedDataSetReference>
+      </SharedDataSet>
+      <Fields>
+        <Field Name="PortfolioId">
+          <DataField>PortfolioId</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Id">
+          <DataField>Id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Subreport Name="Subreport5">
+            <ReportName>Sub_C2</ReportName>
+            <Parameters>
+              <Parameter Name="GetMonth">
+                <Value>=Parameters!GetDate.Value</Value>
+              </Parameter>
+              <Parameter Name="ShareClassId">
+                <Value>=Parameters!GetSharedClass.Value</Value>
+              </Parameter>
+              <Parameter Name="Language">
+                <Value>=Parameters!GetLanguage.Value</Value>
+              </Parameter>
+              <Parameter Name="SectorTier">
+                <Value>1</Value>
+              </Parameter>
+            </Parameters>
+            <Height>1.5cm</Height>
+            <Width>7cm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Subreport Name="Subreport8">
+            <ReportName>Sub_C6</ReportName>
+            <Parameters>
+              <Parameter Name="ReportDate">
+                <Value>=Parameters!GetDate.Value</Value>
+              </Parameter>
+              <Parameter Name="ShareClassId">
+                <Value>=Parameters!GetSharedClass.Value</Value>
+              </Parameter>
+              <Parameter Name="Language">
+                <Value>=Parameters!GetLanguage.Value</Value>
+              </Parameter>
+              <Parameter Name="SectorTier">
+                <Value>1</Value>
+              </Parameter>
+            </Parameters>
+            <Top>1.53528cm</Top>
+            <Height>1.5cm</Height>
+            <Width>7cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Subreport Name="Subreport4">
+            <ReportName>Sub_T6</ReportName>
+            <Parameters>
+              <Parameter Name="Language">
+                <Value>=Parameters!GetLanguage.Value</Value>
+              </Parameter>
+              <Parameter Name="ReportDate">
+                <Value>=Parameters!GetDate.Value</Value>
+              </Parameter>
+              <Parameter Name="ShareClassId">
+                <Value>=Parameters!GetSharedClass.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>3.10584cm</Top>
+            <Height>1.5cm</Height>
+            <Width>7cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Subreport Name="Subreport7">
+            <ReportName>Sub_T7</ReportName>
+            <Parameters>
+              <Parameter Name="Language">
+                <Value>=Parameters!GetLanguage.Value</Value>
+              </Parameter>
+              <Parameter Name="ShareClassId">
+                <Value>=Parameters!GetSharedClass.Value</Value>
+              </Parameter>
+              <Parameter Name="ReportDate">
+                <Value>=Parameters!GetDate.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>4.67639cm</Top>
+            <Height>1.5cm</Height>
+            <Width>7cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Subreport Name="Subreport9">
+            <ReportName>Sub_C1</ReportName>
+            <Parameters>
+              <Parameter Name="GetDate">
+                <Value>=Parameters!GetDate.Value</Value>
+              </Parameter>
+              <Parameter Name="GetLanguage">
+                <Value>=Parameters!GetLanguage.Value</Value>
+              </Parameter>
+              <Parameter Name="GetSharedClass">
+                <Value>=Parameters!GetSharedClass.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Left>7.4cm</Left>
+            <Height>1cm</Height>
+            <Width>9.4cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Subreport Name="Subreport1">
+            <ReportName>Sub_T1</ReportName>
+            <Parameters>
+              <Parameter Name="GetLanguage">
+                <Value>=Parameters!GetLanguage.Value</Value>
+              </Parameter>
+              <Parameter Name="GetDate">
+                <Value>=Parameters!GetDate.Value</Value>
+              </Parameter>
+              <Parameter Name="GetSharedClass">
+                <Value>=Parameters!GetSharedClass.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>1.03528cm</Top>
+            <Left>7.4cm</Left>
+            <Height>1cm</Height>
+            <Width>9.4cm</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Subreport Name="Subreport2">
+            <ReportName>Sub_T2x</ReportName>
+            <Parameters>
+              <Parameter Name="GetDate">
+                <Value>=Parameters!GetDate.Value</Value>
+              </Parameter>
+              <Parameter Name="GetSharedClass">
+                <Value>=Parameters!GetSharedClass.Value</Value>
+              </Parameter>
+              <Parameter Name="GetLanguage">
+                <Value>=Parameters!GetLanguage.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>2.10584cm</Top>
+            <Left>7.4cm</Left>
+            <Height>1.5cm</Height>
+            <Width>9.4cm</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Subreport Name="Subreport11">
+            <ReportName>Sub_T3</ReportName>
+            <Parameters>
+              <Parameter Name="GetLanguage">
+                <Value>=Parameters!GetLanguage.Value</Value>
+              </Parameter>
+              <Parameter Name="GetSharedClass">
+                <Value>=Parameters!GetSharedClass.Value</Value>
+              </Parameter>
+              <Parameter Name="GetDate">
+                <Value>=Parameters!GetDate.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>3.67639cm</Top>
+            <Left>7.4cm</Left>
+            <Height>1.5cm</Height>
+            <Width>9.4cm</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Subreport Name="Subreport12">
+            <ReportName>Sub_T4</ReportName>
+            <Parameters>
+              <Parameter Name="GetLanguage">
+                <Value>=Parameters!GetLanguage.Value</Value>
+              </Parameter>
+              <Parameter Name="GetSharedClass">
+                <Value>=Parameters!GetSharedClass.Value</Value>
+              </Parameter>
+              <Parameter Name="GetDate">
+                <Value>=Parameters!GetDate.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>5.24694cm</Top>
+            <Left>7.4cm</Left>
+            <Height>1.5cm</Height>
+            <Width>9.4cm</Width>
+            <ZIndex>8</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+        </ReportItems>
+        <Height>4.48046in</Height>
+        <Style />
+      </Body>
+      <Width>16.9cm</Width>
+      <Page>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
+        <LeftMargin>2cm</LeftMargin>
+        <RightMargin>2cm</RightMargin>
+        <TopMargin>2cm</TopMargin>
+        <BottomMargin>2cm</BottomMargin>
+        <ColumnSpacing>0.13cm</ColumnSpacing>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="GetDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>02/27/2018 00:00:00</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Select Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="GetSharedClass">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>35</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Select Shared Class</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>ListSharedClasses</DataSetName>
+          <ValueField>Id</ValueField>
+          <LabelField>Name</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="GetLanguage">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>SE</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Select Language</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>ListLanguages</DataSetName>
+          <ValueField>Language</ValueField>
+          <LabelField>Language</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>GetDate</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>GetSharedClass</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>GetLanguage</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>e0b99da6-6c2b-48ba-a679-1731fbdafba5</rd:ReportID>
+</Report>

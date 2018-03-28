@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>ODEN_Report</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@Show">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:UserDefined>true</rd:UserDefined>
+          <rd:DbType>Int32</rd:DbType>
+        </DataSetParameter>
+        <DataSetParameter Name="@PositionDate">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:UserDefined>true</rd:UserDefined>
+          <rd:DbType>DateTime</rd:DbType>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandText>IF @Show = 1
+BEGIN
+    DECLARE @return_value int
+
+    EXEC @return_value = [report].[GetTheData] @PositionDate
+
+END
+ELSE 
+BEGIN
+    SELECT 'None' as Empty WHERE 1 = 2
+END</CommandText>
+      <rd:DesignerState>
+        <QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational">
+          <SelectedColumns>
+            <ColumnExpression ColumnOwner="CodeSource" ColumnName="Id" />
+            <ColumnExpression ColumnOwner="CodeSource" ColumnName="Code" />
+            <ColumnExpression ColumnOwner="CodeSource" ColumnName="Description" />
+            <ColumnExpression ColumnOwner="CodeSource" ColumnName="Verified" />
+          </SelectedColumns>
+          <Filters>
+            <Filter Operator="=" Param="True">
+              <ColumnExpression ColumnOwner="CodeSource" ColumnName="Id" />
+            </Filter>
+          </Filters>
+        </QueryDefinition>
+      </rd:DesignerState>
+    </Query>
+    <Fields>
+      <Field Name="Empty">
+        <DataField>Empty</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

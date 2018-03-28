@@ -1,0 +1,2381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="VPD_RoP">
+      <DataSourceReference>VPD_RoP</DataSourceReference>
+      <rd:DataSourceID>ae986846-bcb4-426d-b697-40380e0f15d0</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>0.03in</BottomMargin>
+  <RightMargin>0.03in</RightMargin>
+  <PageWidth>11.7in</PageWidth>
+  <ReportParameters>
+    <ReportParameter Name="StartDate">
+      <DataType>DateTime</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Start Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ReportDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>GetDefaultReportDate</DataSetName>
+          <ValueField>ID</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Report Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Country">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Country</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>GetCountries</DataSetName>
+          <ValueField>fldCountry</ValueField>
+          <LabelField>fldCountry</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="PortfolioType">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Portfolio Type</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>GetPortfolioTypes</DataSetName>
+          <ValueField>fldPortfolioType</ValueField>
+          <LabelField>fldPortfolioType</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="PortfolioClass">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>FixedIncome</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>PortfolioClass</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>PortfolioClass</DataSetName>
+          <ValueField>fldPortfolioClass</ValueField>
+          <LabelField>fldPortfolioClass</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="Level">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>TOP PORTFOLIO</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Portfolio Level</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>TOP PORTFOLIO</Value>
+            <Label>Top Portfolio</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>SUB PORTFOLIO</Value>
+            <Label>Sub Portfolio</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="Portfolio">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>GetPortfolios</DataSetName>
+          <ValueField>PortfolioCode</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Portfolio</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>GetPortfolios</DataSetName>
+          <ValueField>PortfolioCode</ValueField>
+          <LabelField>PortfolioName</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="ReportDescription">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Report Description</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Filter">
+      <DataType>Float</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>-1</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Filter</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>-1</Value>
+            <Label>All</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>0.05</Value>
+            <Label>5%</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>0.1</Value>
+            <Label>10%</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:GridSpacing>0.025in</rd:GridSpacing>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <Body>
+    <ColumnSpacing>0.03in</ColumnSpacing>
+    <ReportItems>
+      <Table Name="table2">
+        <Footer>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox159">
+                      <ZIndex>31</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>White</Bottom>
+                          <Top>White</Top>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox160">
+                      <ZIndex>30</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>White</Bottom>
+                          <Top>White</Top>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox161">
+                      <ZIndex>29</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>White</Bottom>
+                          <Top>White</Top>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox162">
+                      <ZIndex>28</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>White</Bottom>
+                          <Top>White</Top>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox163">
+                      <ZIndex>27</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>White</Bottom>
+                          <Top>White</Top>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox164">
+                      <ZIndex>26</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>White</Bottom>
+                          <Top>White</Top>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox165">
+                      <ZIndex>25</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>White</Bottom>
+                          <Top>White</Top>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox166">
+                      <ZIndex>24</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>White</Bottom>
+                          <Top>White</Top>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox167">
+                      <ZIndex>23</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>White</Bottom>
+                          <Top>White</Top>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox168">
+                      <ZIndex>22</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>White</Bottom>
+                          <Top>White</Top>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox169">
+                      <ZIndex>21</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>White</Bottom>
+                          <Top>White</Top>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox4">
+                      <rd:DefaultName>textbox4</rd:DefaultName>
+                      <ZIndex>20</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>White</Bottom>
+                          <Top>White</Top>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox7">
+                      <rd:DefaultName>textbox7</rd:DefaultName>
+                      <ZIndex>19</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>White</Bottom>
+                          <Top>White</Top>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox171">
+                      <ZIndex>18</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>White</Bottom>
+                          <Top>White</Top>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox172">
+                      <ZIndex>17</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>White</Bottom>
+                          <Top>White</Top>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox173">
+                      <ZIndex>16</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>White</Bottom>
+                          <Top>White</Top>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.7117cm</Height>
+            </TableRow>
+          </TableRows>
+        </Footer>
+        <KeepTogether>true</KeepTogether>
+        <DataSetName>GetBestExecutionData</DataSetName>
+        <Top>0.44444cm</Top>
+        <Width>11.5187in</Width>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox95">
+                      <ZIndex>15</ZIndex>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!PortfolioName.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox96">
+                      <ZIndex>14</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Left>Dotted</Left>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!ISIN.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox97">
+                      <ZIndex>13</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Left>Dotted</Left>
+                          <Right>Dotted</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!SecurityName.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox98">
+                      <ZIndex>12</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Left>Dotted</Left>
+                          <Right>Dotted</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!SecurityID.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox99">
+                      <ZIndex>11</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Left>Dotted</Left>
+                          <Right>Dotted</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!fldBroker.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox100">
+                      <ZIndex>10</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Left>Dotted</Left>
+                          <Right>Dotted</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!TransactionID.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox101">
+                      <ZIndex>9</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Left>Dotted</Left>
+                          <Right>Dotted</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!TransactionType.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox102">
+                      <ZIndex>8</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Left>Dotted</Left>
+                          <Right>Dotted</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!internalTransaction.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox103">
+                      <ZIndex>7</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Left>Dotted</Left>
+                          <Right>Dotted</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <Format>yyyy-MM-dd</Format>
+                        <BorderColor>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!TradeDate.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox104">
+                      <ZIndex>6</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Left>Dotted</Left>
+                          <Right>Dotted</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <Format>yyyy-MM-dd</Format>
+                        <BorderColor>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!SettlementDate.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox105">
+                      <ZIndex>5</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Left>Dotted</Left>
+                          <Right>Dotted</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!TreadeCurrency.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Quantity">
+                      <rd:DefaultName>Quantity</rd:DefaultName>
+                      <ZIndex>4</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Left>Dotted</Left>
+                          <Right>Dotted</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <Format>#,#</Format>
+                        <BorderColor>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!Quantity.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox6">
+                      <rd:DefaultName>textbox6</rd:DefaultName>
+                      <ZIndex>3</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Left>Dotted</Left>
+                          <Right>Dotted</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <Format>P2</Format>
+                        <BorderColor>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!MVofTotal.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox107">
+                      <ZIndex>2</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Left>Dotted</Left>
+                          <Right>Dotted</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <Format>F</Format>
+                        <BorderColor>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!TradePrice.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox109">
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Left>Dotted</Left>
+                          <Right>Dotted</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <Format>F</Format>
+                        <BorderColor>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <Color>=IIF(ABS(Fields!Decalog_Price.Value/Fields!TradePrice.Value-1) &gt; 0.05,
+	IIF(ABS(Fields!Decalog_Price.Value/Fields!TradePrice.Value-1) &gt; 0.1,
+		"Purple", "Orange")
+	, "Black")</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!Decalog_Price.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox110">
+                      <Style>
+                        <BorderStyle>
+                          <Left>Dotted</Left>
+                          <Right>Dotted</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <Format>F</Format>
+                        <BorderColor>
+                          <Default>Silver</Default>
+                        </BorderColor>
+                        <Color>=IIF(ABS(Fields!TradePrice.Value/Fields!JPM_Price.Value-1) &gt; 0.05,
+	IIF(ABS(Fields!TradePrice.Value/Fields!JPM_Price.Value-1) &gt; 0.1,
+		"Purple", "Orange")
+	, "Black")</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!JPM_Price.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.59265cm</Height>
+            </TableRow>
+          </TableRows>
+          <Grouping Name="table2_Details_Group">
+            <GroupExpressions>
+              <GroupExpression>=Fields!TransactionID.Value</GroupExpression>
+            </GroupExpressions>
+          </Grouping>
+          <Sorting>
+            <SortBy>
+              <SortExpression>=Fields!TradeDate.Value</SortExpression>
+              <Direction>Descending</Direction>
+            </SortBy>
+            <SortBy>
+              <SortExpression>=Fields!SecurityName.Value</SortExpression>
+              <Direction>Ascending</Direction>
+            </SortBy>
+          </Sorting>
+        </Details>
+        <Style>
+          <BorderColor>
+            <Default>White</Default>
+          </BorderColor>
+        </Style>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ColSpan>16</ColSpan>
+                  <ReportItems>
+                    <Textbox Name="textbox190">
+                      <rd:DefaultName>textbox190</rd:DefaultName>
+                      <ZIndex>65</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>14pt</FontSize>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>White</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Parameters!ReportDescription.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.63492cm</Height>
+            </TableRow>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ColSpan>16</ColSpan>
+                  <ReportItems>
+                    <Textbox Name="textbox191">
+                      <ZIndex>64</ZIndex>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <Format>yyyy-MM-dd</Format>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>White</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>="Start Date: " &amp; FORMAT(Parameters!StartDate.Value, "yyyy-MM-dd")</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.63492cm</Height>
+            </TableRow>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ColSpan>16</ColSpan>
+                  <ReportItems>
+                    <Textbox Name="textbox113">
+                      <ZIndex>63</ZIndex>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <Format>yyyy-MM-dd</Format>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>White</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>="End Date: " &amp; FORMAT(Parameters!ReportDate.Value, "yyyy-MM-dd")</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.63492cm</Height>
+            </TableRow>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox129">
+                      <ZIndex>62</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>7pt</FontSize>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Portfolio</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox130">
+                      <ZIndex>61</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>7pt</FontSize>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>ISIN</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox131">
+                      <ZIndex>60</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>7pt</FontSize>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Name</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox132">
+                      <ZIndex>59</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>7pt</FontSize>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Security ID</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox133">
+                      <ZIndex>58</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>7pt</FontSize>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Broker</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox134">
+                      <ZIndex>57</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>7pt</FontSize>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Transaction ID</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox135">
+                      <ZIndex>56</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>7pt</FontSize>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Transaction Type</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox136">
+                      <ZIndex>55</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>7pt</FontSize>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Internal Trade</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox137">
+                      <ZIndex>54</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>7pt</FontSize>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Trade Date</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox138">
+                      <ZIndex>53</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>7pt</FontSize>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Settle Date</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox139">
+                      <ZIndex>52</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>7pt</FontSize>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Currency</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox1">
+                      <rd:DefaultName>textbox1</rd:DefaultName>
+                      <ZIndex>51</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>7pt</FontSize>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Nominal</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox3">
+                      <rd:DefaultName>textbox3</rd:DefaultName>
+                      <ZIndex>50</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>7pt</FontSize>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>% of total</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox141">
+                      <ZIndex>49</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>7pt</FontSize>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Trade Price</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ColSpan>2</ColSpan>
+                  <ReportItems>
+                    <Textbox Name="textbox142">
+                      <ZIndex>48</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>7pt</FontSize>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Market Price</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.8254cm</Height>
+            </TableRow>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox143">
+                      <ZIndex>47</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox144">
+                      <ZIndex>46</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Security</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox145">
+                      <ZIndex>45</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Security</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox146">
+                      <ZIndex>44</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Security</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox147">
+                      <ZIndex>43</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Shortname</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox148">
+                      <ZIndex>42</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox149">
+                      <ZIndex>41</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox150">
+                      <ZIndex>40</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox151">
+                      <ZIndex>39</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox152">
+                      <ZIndex>38</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox153">
+                      <ZIndex>37</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox2">
+                      <rd:DefaultName>textbox2</rd:DefaultName>
+                      <ZIndex>36</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox5">
+                      <rd:DefaultName>textbox5</rd:DefaultName>
+                      <ZIndex>35</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>%</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox155">
+                      <ZIndex>34</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>QC</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox156">
+                      <ZIndex>33</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Decalog</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox157">
+                      <ZIndex>32</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontSize>6pt</FontSize>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>JPM</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.60025cm</Height>
+            </TableRow>
+          </TableRows>
+          <RepeatOnNewPage>true</RepeatOnNewPage>
+        </Header>
+        <TableColumns>
+          <TableColumn>
+            <Width>3.1746cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.84127cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.73016cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.5873cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.22222cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.4127cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.70978cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.26984cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.33333cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.33333cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.39683cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.51981cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.51981cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.32983cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.03175cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.84127cm</Width>
+          </TableColumn>
+        </TableColumns>
+        <Height>4.63476cm</Height>
+      </Table>
+    </ReportItems>
+    <Height>2.2in</Height>
+  </Body>
+  <PageHeader>
+    <ReportItems>
+      <Image Name="image1">
+        <Sizing>Fit</Sizing>
+        <Left>25.71429cm</Left>
+        <Top>0.02116cm</Top>
+        <ZIndex>1</ZIndex>
+        <Width>3.5cm</Width>
+        <Source>Embedded</Source>
+        <Style />
+        <Height>1.20635cm</Height>
+        <Value>alfred_berg_logo</Value>
+      </Image>
+      <Textbox Name="textbox76">
+        <rd:DefaultName>textbox76</rd:DefaultName>
+        <Width>10in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontSize>14pt</FontSize>
+          <VerticalAlign>Bottom</VerticalAlign>
+          <BackgroundColor>=String.Format("#{0:x6}",RGB(164,101,0))</BackgroundColor>
+          <Color>White</Color>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Value>Best Execution - Fixed Income</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>1.26984cm</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+  </PageHeader>
+  <rd:ReportID>6966c7a5-76ff-436e-b9c5-6e929dcbfe77</rd:ReportID>
+  <LeftMargin>0.03in</LeftMargin>
+  <EmbeddedImages>
+    <EmbeddedImage Name="untitled">
+      <ImageData>/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAqAiUDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iq/2pff/vk0fal9/wDvk07AWKQkKpZiAAMkntUH2pff/vk1DeXAaxuFGcmJv4T6GiwPRDRrukEZGq2JB/6eE/xpf7c0j/oKWP8A4EJ/jXjmmXlpb6NY2/zZihhj5XB+UAc4Htz/AEq2NUs2mXGec8bcDtx0qb6XPJ/tP0+8
+9Y/tzSP+gpY/+BCf40ses6XLNHDHqVm8sh2oizqWY4JwBnk4BP4V51oUFlrEN3G9x5LLHI4mLLsiGTguCARj6iiTyNO8Y6baeZ5ssF0DJ5cRAU7G9ueoobsawxsnZtKz03PU6Kzr3WbTTdPmv72ZYbWFN8kjA4VfU1j2/wAQ/C11b3E8Os2zJbRedLkMCsfHzbSMkcjkDvVWPROporFg8VaPdCwNvfRyrfwyT2rICRIkeN5B6DG4cHn8jVLS/iB4Y1q7jtdP1m2muJMmOPlTJjrtyBu/CiwHT0VzWq+PfDeiagbDUtVhtrlVV2R1b5VYgAk4wByOTVw+KNH/ALRstPGoW5ur6IzWsatkzIBncuOCMA/kaLAbNFcrd/EbwrY31xZ3WswRT277JlZWAjb0Y4wPzqxqHjfw/pc95BfanDBJZxpLcKyt+7ViApPHcsPzosB0VFYOkeL9F16aaHTb5Z5YUV3Ty2UhWzg4YDI4PI/rS2/i/Q7vSrnVINTtnsLZ2Sa4DfJGy4yCfxH50WA3aK5vQ/Hfh/xJdS22k3/2iaJN7oYJEIXOM/MoyPcVufal9/8Avk0WAsUVX+1L7/8AfJo+1L7/APfJoswLFFV/tS+//fJo+1L7/wDfJosBYoqv9qX3/wC+TR9qX3/75NFmBYoqv9qX3/75NH2lff8AI0WYFiiq/wBqX3/75NH2pff/AL5NFgLFFV/tS+//AHyaPtS+/wD3yaLAWKKr/al9/wDvk0fal9/++TRZgWKKr/al9/8Avk0fal9/++TRZgWKKr/al9/++TR9qX3/AO+TRYCxRVf7Uvv/AN8mj7Uvv/3yaLMCxRVf7Uvv/wB8mj7Uvv8A98mizAsUVX+1L7/98mj7Uvv/AN8miwFiiq/2lff8jR9qX3/75NFmBYoqv9qX3/75NH2pff8A75NFmBYoqv8Aal9/++TR9qX3/wC+TRYCxRVf7Uvv/wB8mj7Uvv8A98miwFiiq/2pff8A75N
+H2pff/vk0WYFiiq/2pff/AL5NH2pff/vk0WAsUVX+0r7/AJGj7Uvv/wB8miwFiiq/2pff/vk0fal9/wDvk0WYFiiq/wBqX3/75NH2pff/AL5NFmBYoqv9qX3/AO+TR9qX3/75NFgLFFV/tS+//fJo+1L7/wDfJoswLFFV/tS+/wD3yaPtS+//AHyaLMCxRTUbegYd6KQGJ9q5PDYx/dNBusKxw2Rn+E0n2OXceuPpR9kl2nrnnHFVcLDvtPzAc/l71HJcb4ZV+YZUj7vqKd9kk3DrjHpTZLWRYpCc4AJ6e1FxPY8J02eD7bam9fFpG6vMMZLICCVHucYHuc8DJrb8T6zolw1lDothHFbpDvd8sJA743KSeuNoHOe+Kw/DVjpVx4Wuo9T1e4i1VkWSCNoQDlRyvmEbRnPfkYzzgisfTdJ1TV75bOxfUJpTyxWBdiDOMs2zCj3J9PUVPL5nyioyjBwjZ3+b/I1Tfy/Z5LdZHEDklo88N6Z9a2dN1abU/GcF7O2XlmaQ8dPlb0rhzFcDA+23fJx/q06/98e3+citfwmLn/hK9LAnuZRIz5DxDAHlt1wowc460creqf5hh6T9rFc3Vd+nyPYPF63Gq/D7VrKzglmuLmzKxRqh3MSentXlc/hnxLd25ni0zVGCaCdOlF+Ish8YWOBU5ChsctzjPNes+ING1PUPBWoWWml1vprfbAd3lkNuz17VxP8AwrnxdcvCs+r3qWc9/dSXMAueYVYMIpEYc4xglCcZA45qj6ss+H/CV34d8UaO9r9rfTH025drZ0yLO5dIxIAccKxC4GeCp9c0zwD4El/4Rrw9Jrz6jBd6RdSzwWeI1RGL5BbCbjng4LfpVS78B+Nb59Iv9SvLy4u8SJfRWl0kSqiqqxbARtLEhmYkd61ofButzeOre++yXdtpewRXMdxerIhj8hV2x7PnDBsg5OCct3oGGp+Hb7WPibqlxP8A2hZ6Td6KtpJc26R/vCWUMnzq3b
+PIGeOtczqPgXxE9zPfaHG1o3h8Q2+j+em64mSLeS2fu4dnY8jnAHA4OrdeA/GCeDvDsOmSyQa1BcGa+kku2YEg/LnkhhjHHSq9j8PfFdlrEBvDqN9p9vGyqqagoMp892XfuHQoRnGD6EYoAhGj+Kr7RPH13HaXmmXOqLFMsDQJIblNjCSIDDHPzYBGDnHPWo/GHhvWtT1LxK+n6LeGC80qzhtldBklGiJXr1UA5+hrfm8D+K5tba4a/uW02Z9SZrOSfHlNI0giKsvJUr5ZAJ+Ug9M4qxc+Cde/4VlbaTavNHrTtC11ILpiSwYbzuJ9O3SiyAzEfxRba5qOu6dpeqO66GllCl/BEJUn8w7ViC8eWudx3ZJwck8Vg23gvXfDVpNpFzps2r6FrFlGLu2035PJuE2YcNJn5uCc9CT0GAB0+ofD3xdp9+s3h/xDdS29mBcww3jgiaYsQ8fAwqBAuAc8saq2Hw88TrNaSX01y0Tm5F1BBfMvJfdCSf4k4A2jaRj3Io0A2fBb+IE8QlJxrg0GCw8qFdaig88Tb1wAyDcyhQetd6Lg8kq2B32n0rzBvAHigeGtLgs765s9Vi0+6F1KLneks7GNVRt2eCnmYYfdIBz62tF8Ja/a+IWu763v5gLeCKN/tieUrLaxozlfvE+YH7gHrjvQB6J9pbaPlbJxxtNL9p+cgg/98n1rySLwF4rj8PXtnctqFz9pt7J1ijvUAjlUKZAQ4YEhwTkNhh74r0bw5pWpWXh3TrXUihvIbdUlMZLLuHueTxjn1zRcLGp9q+QnDZ542n3oN104bn/ZPpSfZJdp6557UGzlyMZ6+lFwsO+0/MRz09PekF1lVOGycfwmk+ySbj1x9KPsku0dc8Z4ouFhftXI4bGD/CaUXPJ69cdKb9jl3Drj6UotJMnr19KLgAusheG56/KeKPtXJ4bGP7ppBaS4Xr78UfY5dx64+lFwsKbrCscNkZ/hNKbnkDnrjpTfsku09c844
+oNpJkYz+VFwsKLrrw3/AHyfSj7V8gOGzxxtPtQLOXJ69eOKT7JLsHXPHai4WHfafmA5/L3pBddeG/75PpSfZJNw64x6Uos5cnr144ouAfauF4bnr8p9KX7T82Ofy96aLSXC9ffil+ySbj1xj0ouFg+1fIThs88bT70G65H3v++T6Un2SXaeuee1BtJeOv5UXCw4XOSRz1x0pBdZVThsnH8JpBaSZOc9eOKPsku0dc8Z4ouFhftXzD73T+6aDdYDcNxnHynmk+yS5HXGPSg2kuG6+3FFwsONzgjr1x0pPtXzH73Qfwmg2kmR16+lJ9jlyeuMelFwFN1hWOGyM8bTS/afmxz09Pem/ZJdp655xxS/ZJNw64+lFwsAuuT97j/ZPpR9q+QHDZ442mkFpLk9fyo+yS7R1zx2ouFh32n5sc9PT3pPtXyE4bPPG0+9H2STcOuPpSfZJdp6557UXCwpuunDc/7J9KX7T8xHPT096abOXIxnr6UfZJNx64+lFwF+1fIThs88bT70fauRw2MH+E0n2SXaeuee1H2OXcOuPpRcLDhc8nr1x0pBdZVThsnH8JoFpJk9evpSfZJdo654zxRcLC/auRw2MH+E0G6wrHDZGf4TSfY5dw64+lH2SXaeueccUXCw43PIHPXHSk+1cnhsY/umkNpJkYz+VH2OXceuPpRcLC/auCcNwcfdPrS/afmA5/L3pv2SXHfOfT3o+ySbh1xj0ouFhRddeG/75PpR9q+QHDZ442n2oFnLk9evHFJ9kl2DrnjtRcLDvtPzY5/L3pPtXyE4bPPG0+9H2STceuMelJ9kl2nrnntRcLGvZtvtUb1z/OiizQx2iKeoz/OipAm2r6D8qNq+g/KlooATavoPyqOeLzLeSNQAWUqD9RUtFAHj3/Co9W/5/bD/AL6f/wCJpR8JdYAIF9YgEYIDPz9fl9q9gooPN/srDdn9549/wqPVsH/TbDv/ABP/APE1qeHvhrqOka/Z389z
+ZPFC5ZlUsSRgjuvvXptFBUMsw8JKSTuvMQIoGAo/KjavoPypaKD0BNq+g/KjavoPypaKAE2r6D8qNq+g/KlooATavoPyo2r6D8qWigBNq+g/KjavoPypaKAE2r6D8qNq+g/KlooATavoPyo2r6D8qWigBNq+g/KjavoPypaKAE2r6D8qNq+g/KlooATavoPyo2r6D8qWigBNq+g/KjavoPypaKAE2r6D8qNq+g/KlooATavoPyo2r6D8qWigBNq+g/KjavoPypaKAE2r6D8qNq+g/KlooATavoPyo2r6D8qWigBNq+g/KjavoPypaKAE2r6D8qNq+g/KlooATavoPyo2r6D8qWigBNq+g/KjavoPypaKAE2r6D8qNq+g/KlooATavoPyo2r6D8qWigBNq+g/KjavoPypaKAE2r6D8qNq+g/KlooATavoPyo2r6D8qWigBNq+g/KjavoPypaKAE2r6D8qNq+g/KlooATavoPyo2r6D8qWigBNq+g/KjavoPypaKAE2r6D8qNq+g/KlooAMY6UUUUAf//Z</ImageData>
+      <MIMEType>image/jpeg</MIMEType>
+    </EmbeddedImage>
+    <EmbeddedImage Name="alfred_berg_logo">
+      <ImageData>Qk2WnwAAAAAAADYAAAAoAAAAyAAAAEQAAAABABgAAAAAAGCfAAAAAAAAAAAAAAAAAAAAAAAA////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////z7uh2sq1////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////zLeboXU118ix////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////yLKTlmkom24t2cm0///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+vn2v6WAnG4uj2Ihmm4u2cm0//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8/Pz////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7ungsJBilmgmj2Iij2Ijmm4u2cm0////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////0dHRfHx8iIiIc3NzwcHB/////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////2su2n3hAlWYkj2Ijj2Mkj2Ijmm4u2cm0////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////tbW1tLS08fHxp6enGBgYyMjI////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8OriuZ54mWwt
+kWQij2Mkj2Mkj2Mkj2Ijmm4u2cm0////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9PT0wcHByMjIvr6+39/f////19fXpKSkp6en29vb////////////4uLioKCgpaWl7u7u////////////////////DQ0Ng4OD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9vPvzLmcm3Q7lWckj2Mjj2Mkj2Mkj2Mkj2Mkj2Ijmm4u2cm0///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8vLyqampGhoaZ2dn29vbtLS0MTExsrKyu7u7QkJCuLi4////09PTMzMzmJiYmZmZSEhI4+Pj////9PT09PT0tra2EBAQurq6////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9PDqzbqeo31Jl2knkWMij2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Ijmm4u2cm0//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////JycnqKio////Pj4+WVlZ////////cHBwNTU1/f39ZWVlQEBA////////QUFBdnZ2////z8/Pb29vMzMztra2/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////v796N7QwamGnXc/mWwqkmQjj2Mjj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Ijmm4u2cm0////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9vb2KSkpoqKi////WlpaSkpK////////YWFhNzc3+/v7RUVFY2Nj////////YGBgSkpK////////5ubmbm5ufX19/
+Pz8////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+Pbz5NrLybOUqYdWl2wul2kmkWMij2Mjj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Ijmm4u2cm0////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////JSUln5+f////4+PjTk5Oe3t7hYWFOTk5ycnJ////UVFRT09P////8PDwJSUlhoaG29vb2NjY////srKyFxcX5eXl/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////fz79vPt7OXa3M+7ybWXtplvoHpEl2ssmWsok2QikGMjj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mk
+j2Mkj2Mkj2Mkj2Mkj2Mkj2Ijmm4u2cm0////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////4uLij4+PHR0dnp6e////7u7uQkJCfn5+mZmZSUlJ6urq////p6enFBQUo6OjZWVlZGRk9PT01tbWcXFxpaWlSUlJV1dX+Pj4////////////////////////19fXra2tnJycmJiYmJiYmJiYqqqq0NDQ9/f3////////////////////////////////////////////+PXx49jHzbmdvaN9r5BjpYJQnHY9lGotmWwrm2wplWYjkWQikGMjj2Mjj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Ijmm4u2cm0///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////6+vrvr6+x8fH6Ojo////nJycHx8f////////Pj4+fn5+////+vr6V1dXX19f5OTk////////////4+PjpqamsLCw+Pj4////////////////////1NTUUlJSDw8PBAQECAgIEhISHR0dFxcXDw8PFBQUKCgoiIiI////////////////////////////////4tbGvqN9nXZAmG0tmmspl2glk2Qik2UkkWMikGMjj2Mjj2Ijj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Ijmm4u2cm0//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////w8PDICAg0dHR6OjoJCQkmZmZ////////7+/vZ2dnj4+P7+/v////////////////////////////////////////3d3dIyMjAAAAAwMDUlJSwMDA6+vr7+/v7u7u3d3dqKioQEBABAQEgYGB////////////////////593QsZJlmGwtlmckkmQjj2Mjj2Mjj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Ijmm4u2cm0////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////sLCwfn5+g4ODj4+P+fn5////////////+vr6jo6Ob29v6urq/////////////////
+///////////////////gYGBAAAAAQEBUlJS////////////////////////////+vr6SkpKCAgInp6e////////8Ovj0b6kmG4xlmckkGMjj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Ijmm4u2cm0////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+vr69fX1////////////////////////////7+/v+vr6////////////////////////////////////enp6AAAABAQEsrKy////////////////////////////////i4uLAAAANDQ0+/v7+ffzp4RSnXAvkGIij2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Mk
+j2Mkj2Mkj2Mkj2Mkj2Mkj2Mkj2Ijmm4u2cm0////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////ysrKDw8PAAAAtbW1////////////////////////////8vLyQkJCAAAAGRkZ8vLyx7GSl2cjj2EhjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmIjjmEimW0s2cmz///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////sbGxICAgT09P4eHh5ubm5eXl5eXl5OTkz8/Pm5ubOjo6AgICAAAANTU1+/v7rIFEnG0qnW8unnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunnAunm8tqnw518aw/////////////////////////////////v7+/v7+/v7+/v7+/v7+/f39/////////////////////////////f39/v7+/v7+/v7+/v7+/v7+/v7+/////////v7+/v7+/v7+/v7+/v7+/f39/////////////f39/v7+/v7+/v7+/v7+/f39/////////////f39/v7+/v7+/v7+/v7+/v7+/v7+////////////////////////////////////9PT01NTUwsLCv7+/zs7O8fHx////////////////////////////////////6+vrycnJwMDAz8/P9fX1////////////9/f3+/v7/v7+/f
+39/////////////////////////////////f39/f39/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/////////////////////////////////////////////////////v7+3NzcxMTEubm5xsbG5eXl/////////////////////////f39/v7+/v7+/v7+/v7+/v7+/f39////////////////////////xcXFNTU1AAAAFBQUFhYWFRUVFxcXExMTCgoKBAQEAAAAAAAAEBAQq6ur////1caz2Mm318m318m318m318m318m318m318m318m318m318m318m318m318m318m318m318m318m318m318m318m318m318m318m318m318m318m318m318m318m318m318m318m318m318i228y78ezm////////////////////////+/v7bGxsLCwsOTk5Pz8/Pz8/ODg4LCwsSEhI7+/v////////////y8vLODg4LCwsOTk5Pz8/Pz8/Pz8/Pj4+MjIyMTExMDAwNTU1Pz8/Pz8/Pz8/ODg4LCwsj4+P6OjoQEBALi4uPj4+Pz8/Pz8/PT09LS0tW1tb8vLyX19fLS0tPT09Pz8/Pz8/PT09MDAwKCgoenp6////////////////////////5+fnfX19Li4uBgYGDAwMFhYWDQ0NHBwcfHx87e3t////////////////////7e3teHh4IiIiCAgICwsLBgYGJSUllZWV////oKCgLS0tODg4PT09LS0tT09P9vb2////////////////////kpKSKioqLy8vPDw8Pz8/Pz8/Pz8/NTU1KysrKioqLi4uPj4+Xl5ejY2Nzs7O/////////////////////////////f39np6eQEBADAwMCQkJExMTEBAQDAwMWlpaz8/P////////8/PzUVFRLS0tPT09Pz8/Pz8/Pj4+MTExK
+SkpbW1t/f39////////////urq6EBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQUFCQkJGxsbuLi4////////6t62696269626962696269626962696269626962696269626962696269626962696269626962696269626962696269626962696269626962696269626962696269626962696269627+O7+fTm/////////////////////////f39mpqaXFxcCgoKAAAAAAAAFRUVX19fg4OD9PT0////////////29vbenp6WlpaEhISAAAAAAAAAAAAAAAAMzMzcXFxa2trICAgAAAAAAAAAAAAFBQUZGRksrKy8PDwgICASEhIAAAAAAAAAAAABAQETU1NkZGR9/f3lZWVT09PAQEBAAAAAAAAAQEBSEhIdHR0p6en/v7+////////////////z8/PLi4uAQEBAAAAGRkZdHR0mJiYiYmJQEBABgYGNjY23d3d////////////5eXlOjo6AgICAAAABAQEMzMzV1dXLS0tCQkJb29vRkZGAAAAAAAAAgICVFRUiYmJ+fn5////////////////////tbW1cnJyTExMAwMDAAAAAAAAAAAAJycnbW1teXl5bm5uSEhIDQ0NAQEBDQ0NU1NT09PT////////////////7+/vVFRUBwcHAAAACgoKW1tblJSUk5OTXV1dCAgIEBAQrKys////9vb2jIyMVVVVBwcHAAAAAAAAAAAAQkJCcnJynp6e/v7+////////////W1tbAAAAMTExdnZ2goKCgoKCgoKCgoKCgoKCgoKClJSUt7e36Ojo////////////0qk2z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c3
+z6c3z6c3z6c3z6c3z6c3z6c3z6c3z6c227NC6Nqz////////////////////////////////////x8fHFBQUBAQEuLi4////////////////////////////////////jY2NAQEBAAAAAAAARERE+Pj4////////w8PDCAgIAAAABQUFpKSk////////////////////QkJCAAAAAAAATExM////////////////////T09PAAAAAAAAPj4+////////////////////////////6urqKSkpAAAAAAAAMTEx29vb////////////////ioqKBQUFQ0ND9/f3////+/v7UVFRAAAAAAAADAwMoaGh+/v7////+/v7np6eFhYWEBAQAAAAAAAAYGBg////////////////////////////////////////////WFhYAAAAAAAACgoKzMzM////////////////1tbWPj4+AAAAAAAAHBwcxsbG////////////Y2NjAAAAAAAADw8PsLCw////////////////v7+/EhISEhIS1NTU////////////X19fAAAAAAAALy8v+vr6////////////////////////WFhYBAQEv7+/////////////////////////////////////////////////////xaNDyqArxp0rwporwJkrvpgrvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcsvpcryaI26dy3////////////////////////////////////////bm5uBQUFra2t////////////////////////////////////XV1dAAAAAAAABAQEp6en////////////2NjYCgoKAAAACgoKvb29///////////////////
+/WVlZAAAAAAAAYGBg////////////////////Z2dnAAAAAAAAT09P////////////////////////////f39/AQEBAAAABwcHwsLC////////////////////////VFRUBQUFsbGx////uLi4BwcHAAAAAwMDe3t7////////////////////mpqaAwMDAAAAAAAAd3d3////////////////////////////////////////////bm5uAAAAAAAADw8P2dnZ////////////////////39/fGhoaAAAAAAAAMTEx9PT0////wsLCCQkJAAAAAwMDfX19////////////////////////nZ2dAAAAZ2dn////////////d3d3AAAAAAAAQEBA/f39////////////////////////wMDAFRUVMTExmZmZrKyspaWloaGhsLCwz8/P+vr6////////////////////////8enR3cWC1LpwyKhQwZw3y6M1yKAuw5wsv5ksvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////vLy8BgYGWlpa////////////////////////////////5OTkFxcXAAAAAAAAFxcX5ubm////////////09PTCgoKAAAACgoKurq6////////////////////VVVVAAAAAAAAXV1d////////////////////ZGRkAAAAAAAATExM/v7+////////////////////9PT0KysrAAAAAAAAPT09////////////////////////////wsLCIyMjtbW1////Y2NjAAAAAAAADg4O3Nzc////////////////////+fn5Li4uAAAAAAAAdH
+R0////////////////////////////////////////////ampqAAAAAAAADg4O1dXV////////////////////////ZGRkAAAAAAAABgYGr6+v////bm5uAAAAAAAADg4O29vb////////////////////////8vLyMzMzdnZ2////////////dXV1AAAAAAAAPT09+vr6////////////////////////////ysrKZGRkGxsbCAgIGhoaKioqKysrGhoaLi4ukpKS9fX1/////////////////////////////fz49e/g6Nu22cOFyapSxZ81yaEwwZosvpgsvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////8/PzJCQkFRUV6+vr////////////////////////////oaGhAgICAAAAAAAAWVlZ////////////////09PTCgoKAAAACgoKurq6////////////////////VVVVAAAAAAAAXV1d////////////////////ZGRkAAAAAAAATExM/v7+////////////////////1dXVDAwMAAAAAQEBdnZ2////////////////////////////////7e3t////9/f3MDAwAAAAAAAAMzMz+fn5/////////////////////f39QUFBAAAAAAAAdHR0////////////////////////////////////////////ampqAAAAAAAADg4O1dXV////////////////////////jY2NAAAAAAAAAQEBfHx8////PDw8AAAAAAAAMjIy+Pj4////////////////////////////8fHx+/v7////////////dHR0AAAAAAAAPT09+
+vr6////////////////////////////////n5+fERERDg4OwsLC9fX19PT0z8/PNDQ0BAQEPT093Nzc/////////////////////////////////////////Pr27uTI28SGxaNDyqIywZorvpgsvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////b29vBAQEn5+f////////////////////////+Pj4SkpKAAAAAAAABAQEpKSk////////////////09PTCgoKAAAACgoKurq6////////////////////VVVVAAAAAAAAXV1d////////////////////ZGRkAAAAAAAATExM/v7+////////////////////wMDACAgIAAAABQUFlZWV////////////////////////////////////////6OjoHR0dAAAAAAAAT09P/v7+////////////////////+vr6PT09AAAAAAAAdHR0////////////////////////////////////////////ampqAAAAAAAADg4O1dXV////////////////////////jIyMAAAAAAAAAAAAc3Nz/v7+KSkpAAAAAAAAUlJS////////////////////////////////////////////////////dHR0AAAAAAAAPT09+vr6////////////////////////////mpqaAwMDAAAAZWVl////////////////1tbWDw8PAAAANTU1////////////////////////////////////////////////////+PTo4dCfyKdMy6MzwZorvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgt
+vpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////vb29BgYGExMTOjo6OTk5OTk5OTk5OTk5Ojo6MzMzAwMDAAAAAAAAFxcX5ubm////////////////09PTCgoKAAAACgoKurq6////////////////////VVVVAAAAAAAAXV1d////////////////////ZGRkAAAAAAAATU1N/v7+////////////////////vLy8CwsLAAAAAwMDZWVlxsbGxMTEw8PDw8PDw8PDxcXFycnJycnJysrK8/Pz5ubmGRkZAAAAAAAAWVlZ////////////////////////+vr6PT09AAAAAAAAdHR0////////////////////////////////////////////ampqAAAAAAAADg4O1dXV////////////////////////XV1dAAAAAAAAAgICkpKS////KSkpAAAAAAAANjY2v7+/xMTEw8PDw8PDw8PDxMTEyMjIycnJyMjI4uLi////////////dHR0AAAAAAAAPz8/+/v7////////////////////////5ubmGhoaAAAABQUFqamp////////////////////Q0NDAAAAAwMD6Ojo////////////////////////////////////////////////////////+vfv4c6cxaJAx58uvpgsvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////9PT0JiYmAAAAMzMzUlJSUVFRUVFRUVFRT09PFBQUAAAAAAAAAAAAV1dX////////////////////09PTCgoKAAAACgoKurq6///////////////
+/////VVVVAAAAAAAAXV1d////////////////////ZGRkAAAAAAAASkpK/v7+////////////////////xcXFCAgIAAAAAAAABgYGEREREBAQEBAQEBAQEBAQCwsLBQUFBAQECgoKm5ub+/v7JCQkAAAAAAAAUFBQ/v7+////////////////////+vr6PT09AAAAAAAAdHR0////////////////////////////////////////////ampqAAAAAAAADg4O1dXV////////////////////zs7OEhISAAAAAAAAFRUV4ODg+/v7LS0tAAAAAAAAAwMDDg4OEBAQEBAQEBAQDw8PDg4OBQUFBQUFBQUFUVFR/v7+////////dHR0AAAAAAAAOjo6+/v7////////////////////////qampBwcHAAAABwcHyMjI////////////////////Z2dnAAAAAAAApaWl////////////////////////////////////////////////////////////////9vDg1b13yqI1wZorvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////////bm5uBQUFr6+v////////////////////U1NTAAAAAAAABAQEo6Oj////////////////////09PTCgoKAAAACgoKurq6////////////////////VVVVAAAAAAAAXV1d////////////////////ZGRkAAAAAAAAJSUl8vLy////////5+fny8vL+vr65+fnFBQUAAAAAQEBaWlp0dHRzc3Nzs7Ozs7O0NDQpKSkBgYGAAAABAQElJSU////SEhIAAAAAAAAMzMz+Pj4////////////////////+vr6Pj4+AAAAAA
+AAdHR0////////////////////////////////////////////ampqAAAAAAAADw8P4eHh////////////////z8/PLS0tAAAAAAAAEBAQp6en/////Pz8TU1NAAAAAAAANDQ0y8vLzs7Ozs7Ozs7Oz8/Px8fHKSkpAAAAAAAATk5O////////////dHR0AAAAAAAAGRkZ6Ojo////////6urqycnJ9PT0////k5OTAwMDAAAACgoK0tLS////////////////////cXFxAAAAAAAAh4eH////////////////////////////////////////////////////////////////////////59ivxqJAxZ0tvpcsvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////////ubm5BwcHbm5u////////////////7OzsHx8fAAAAAAAAFhYW5ubm////////////////////09PTCgoKAAAACgoKurq6////////////////////VVVVAAAAAAAAXV1d////////////////////ZGRkAAAAAgICDAwMvb29////19fXIyMjDAwMWVlZ+fn5Tk5OAAAAAAAAY2Nj////////////////////29vbCwsLAAAABgYGvr6+////jIyMAQEBAAAAEBAQ39/f////////////////////////QEBAAAAAAAAAdHR0////////////////////////////////////////////ampqAAAAAAAABgYGhYWFr6+vrq6unJycaWlpExMTBAQEEBAQT09PxMTE////////////kpKSAgICAAAAISEh+fn5////////////////////OTk5AAAAAQEBeHh4////////////dXV1AAAAAgICC
+wsLra2t////4eHhLCwsDg4OSUlJ9PT0p6enBgYGAAAABwcHycnJ////////////////////aWlpAAAAAAAAi4uL////////////////////////////////////////////////////////////////////////////8uvWz7FbyaEwvpgsvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////////8PDwIiIiJCQk9/f3////////////s7OzBgYGAAAAAAAAWVlZ////////////////////////09PTCgoKAAAACgoKurq6////////////////////WFhYAAAAAAAAYmJi////////////////////aGhoAAAABwcHLi4uWFhY////0NDQFBQUAAAABwcHvr6+v7+/CAgIAAAAHx8f7+/v////////////////rKysBgYGAAAAJiYm8vLy////5eXlGRkZAAAABAQEi4uL////////////////////5ubmHh4eAAAAAAAAdHR0////////////////////////////////////////////ampqAAAAAAAAAAAADw8PFxcXFhYWEhISAgICAAAAQkJCxcXF////////////////////6enpICAgAAAABgYGuLi4////////////////6OjoFxcXAAAABwcHxMTE////////////d3d3AAAAAwMDLS0tSkpK////29vbGRkZAAAABAQEqqqq5+fnEBAQAAAABQUFqamp////////////////////RUVFAAAAAAAAw8PD////////////////////////////////////////////////////////////////////////////////+vft07hux58wvpgsvpgtvpgtvpgtvpgt
+vpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////////////a2trBQUFycnJ////////////cHBwAAAAAAAABQUFpqam////////////////////////09PTCgoKAAAACgoKurq6////////8vLy5+fn5OTkQUFBAAAAAAAASUlJ5OTk6enp6Ojo6Ojo5ubmTU1NAAAAAgICcnJyGhoanZ2d////rKysBQUFAAAAmZmZ////a2trAgICAAAAhoaG////////////////UFBQAAAABgYGnZ2d////////////mJiYBgYGAAAAGBgYzMzM////////////+fn5VlZWAAAAAAAAAAAAdHR0////////////////////////////////////////////ampqAAAAAAAACgoKu7u77+/v6urq09PTkpKSHh4eCQkJOTk5qqqq////////////////////rKysCwsLAAAARERE+/v7////////////k5OTBAQEAAAAWVlZ/f39////////////ZmZmAAAAAAAAb29vIyMjjY2N////vLy8CQkJAQEBh4eH////gICABAQEAAAAXV1d////////////////3NzcEhISAAAAFxcX////4eHh3d3d/////////////////////////////////////////////////////////////////////////////Pr21756yaExvpgsvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////////////t7e3CQkJhYWF////////9fX1MTExAAAAAAAAFxcX5ubm////////////////////////09PTCgoKAAAACgoKurq6////////amp
+qHBwcERERAgICAAAAAAAAAwMDDAwMDg4ODg4ODg4ODAwMAAAAAAAAAAAAjo6OkJCQEBAQWlpaR0dHAAAADAwMycnJ////9vb2ZGRkBwcHBAQEi4uL6Ojo4eHhc3NzAwMDCAgIcnJy/f39////////////////e3t7CQkJAAAAGBgYh4eHtbW1nZ2dOjo6HR0dJycnAAAAAAAAdHR0////////////////////////////////////////////ampqAAAAAAAADw8P3Nzc////////////////zMzMFxcXAAAACQkJiIiI////////////////////l5eXEBAQAAAAWlpa19fX7OzsoqKiDQ0NAQEBPT095+fn/////v7+rq6ubGxsCQkJAAAAAAAAf39/n5+fDQ0NU1NTTk5OAQEBCAgIvLy8////+vr6a2trCQkJAQEBj4+P8vLy+/v72dnZQ0NDAAAAAAAAJSUlbGxsExMTFBQU/////////////////////////////////////////////////////////////////////////////////fv41r55yKAwvpcsvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////////////8fHxHh4ePz8//f39////zMzMCQkJAAAAAAAAV1dX////////////////////////////09PTCgoKAAAACgoKurq6////////ycnJkJCQcHBwFxcXAAAAAAAAGhoaY2NjZWVlZGRkZGRkZGRkampqbGxscHBwzs7O////hISEDw8PBQUFFBQUkJCQ////////////////oKCgMDAwDQ0NExMTFRUVCwsLKysrm5ub////////////////////////////qampNjY2BQUFDQ0NFhYWEBAQMzMzwcHBT09PAA
+AAAAAAdHR0////////////////////////////////////////////ampqAAAAAAAADg4O1dXV////////////////////enp6AgICAAAADw8PyMjI////////////////////xcXFUFBQDQ0NGBgYFxcXEBAQExMTdHR07Ozs/////////Pz8XV1dHBwcJycnLCwsLCwso6Oj////kZGRExMTBQUFERERhISE/v7+////////////qKioOjo6EBAQJiYmMzMzERERCQkJQUFBfHx8VlZWCgoKCAgISkpK/////////////////////////////////////////////////////////////////////////////////////fz507hvyKAwvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////////////////aGhoDQ0N3t7e////i4uLAwMDAAAABAQEpKSk////////////////////////////09PTCgoKAAAACgoKurq6////////////////////VFRUAAAAAAAAXl5e////////////////////////////////////////////6OjoyMjI4eHh////////////////////////+fn5ycnJn5+fnp6ew8PD9fX1////////////////////////////////////+/v7ycnJpaWloqKiyMjI/f39////Pz8/AAAAAAAAdHR0////////////////////////////////////////////ampqAAAAAAAADg4O1dXV////////////////////urq6BwcHAAAAAQEBeHh4////////////////////////////29vbqampm5ubtra26Ojo////////////////////+/v79/f39/f39/f39
+/f3////////////6+vrycnJ3t7e/////////////////////////f390dHRoaGhlZWVq6ur19fX/v7+////////7u7u5+fn////////////////////////////////////////////////////////////////////////////////////////////+vfvzrBcwpssvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////////////////t7e3CgoKoaGh////SEhIAAAAAAAAFxcX5eXl////////////////////////////09PTCgoKAAAACgoKurq6////////////////////VVVVAAAAAAAAYGBg////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+vr6PT09AAAAAAAAdHR0////////////////////////////////////////////ampqAAAAAAAADg4O1dXV////////////////////x8fHCgoKAAAAAAAAWVlZ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9O7dxaNC
+wZosvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////////////////8fHxGhoaXl5e6OjoExMTAAAAAAAAVVVV////////////////////////////////09PTCgoKAAAACgoKurq6////////////////////Y2NjAAAAAAAAYWFh////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+vr6PT09AAAAAAAAdHR0////////////////////////////////////////////ampqAAAAAAAADg4O1dXV////////////////////qqqqBAQEAAAAAAAAbGxs////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////6t68xqA0v5gsvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////////////////////ZWVlJCQklZWVAwMDAAAAAwMDpaWl////////////////////////////////09PTCgoKAAAACgoKurq6///////
+/////////////jIyMAgICAAAAWVlZ////////////////////xsbGSkpKUlJS1dXV////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+vr6PT09AAAAAAAAdHR0////////////////////////////////////////////bm5uAAAAAAAADg4O3Nzc/////////////////v7+SkpKAAAAAAAACgoKvLy8////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////2sSJx58vvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////////////////////tLS0Dw8PJycnAAAAAAAAFhYW6enp////////////////////////////////1dXVCgoKAAAACgoKurq6////////////////////09PTDAwMAAAAMzMz+/v7/////////////v7+RUVFAAAAAAAAWFhY/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Pz8QU
+FBAAAAAAAAdHR0////////////////////////////////////////9PT0SkpKAAAAAAAACQkJurq6////////////39/fY2NjAQEBAAAACgoKgICA////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+/jyyqtTwZosvpgtvpgtvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////////////////////7u7uISEhAAAAAAAAAAAAWFhY////////////////////////////////////2NjYCAgIAAAACgoKurq6////////////////////////aWlpAAAABgYGqamp////////////////qqqqDg4OAAAAU1NT////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Ojo6AAAAAAAAdHR0////////////////////////////////mpqaPj4+HR0dAAAAAAAAAAAAAAAACwsLOjo6QEBAMzMzDg4OCgoKCQkJNzc3p6en/////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7eLExJ81vpgsvpgtvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////////////////////////ZWVlAAAAAAAAAQEBpKSk////////////////////////////7+/vurq6W1tbAAAAAAAACQkJuLi4////////////////////////7e3tRUVFAAAADQ0NlJSU5+fn9fX16enpnp6eDw8PERERw8PD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////6Ojov7+/ioqKCwsLAAAAAAAAcHBw////////////////////////////////q6urYGBgZWVlbm5ucHBwcHBwb29vaWlpYWFhX19fYWFhcXFxlJSUxsbG+Pj4////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////1799xJwtvpgtvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////////////////////////yMjINTU1FxcXLi4u6Ojo////////////////////////////sLCwEhISCgoKDQ0NDQ0NGBgYxcXF////////////////////////////8/PzfHx8GBgYDQ0NDw8PHR0dFBQUERERS0tLxsbG////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////kpKSFBQUCgoKCwsLDg4ODw8Pg4OD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/Hiw6A8v5ksvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////////////////////////////+fn55eXl6enp////////////////////////////////9PT01dXV1tbW19fX19fX29vb+vr6///
+/////////////////////////////////6OjotLS0lJSUk5OToKCg0tLS////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7+/v1NTU1dXV19fX19fX19fX8fHx////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////3sqUxp8wvpgtvpgtvpgtvpgtvpgtvpgsyaM36dy3//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+fXrxqREv5grvpgtvpgtvpgtvpgtvpgsyaM36dy3/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////38yXxp4wvpgsvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////+PPoxaNCv5gsvpgtvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////2sWIxZ4vvpgtvpgtvpgtvpgsyaM36dy3///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9O7bxaA4vpgsvpgtvpgtvpgsyaM36dy3//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////0LZrw5wtvpgtvpgtvpgsyaM36dy3/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////6Nu3xJ0xvpgtvpgtvpgsyaM36dy3////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////+vjxxqVIwJksvpgtvpgsyaM36dy3////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////2sOGxZ0uvpgtvpgsyaM36dy3///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7uTHxJ4zvpgtvpgsyaM36dy3//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Pr0yKhOwJosvpgsyaM36dy3/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////28WIxJ0uvpgsyaM36dy3////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////6+DAxZ80vpgsyaM36dy3////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+vfvxKJBv5gsyaM36dy3///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////07lxw5ssyaM36dy3//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////49Olx6AxyaM36dy3/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8+zYwp00yqM36dy3////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////Pv2yalQy6Q26dy3////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////18B/z6g46dy3///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////5dat0ao86dy2//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8+3azKdA6du1/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Pv3yqtU6Nmy////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////28aK59iv////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8enT7OHA///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</ImageData>
+      <MIMEType>image/bmp</MIMEType>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <DataSets>
+    <DataSet Name="GetPortfolios">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>sp_RiskReports_GetPortfolios</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@LEVEL">
+            <Value>=Parameters!Level.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Country">
+            <Value>=Parameters!Country.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@PortfolioType">
+            <Value>=Parameters!PortfolioType.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Date">
+            <Value>=Parameters!ReportDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@PortfolioClass">
+            <Value>=Parameters!PortfolioClass.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>VPD_RoP</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="PortfolioCode">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>PortfolioCode</DataField>
+        </Field>
+        <Field Name="PortfolioName">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>PortfolioName</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="GetCountries">
+      <Query>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>sp_RiskReports_GetCountries</CommandText>
+        <DataSourceName>VPD_RoP</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="fldCountry">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>fldCountry</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="GetPortfolioTypes">
+      <Query>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>sp_RiskReports_GetPortfolioType</CommandText>
+        <DataSourceName>VPD_RoP</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="fldPortfolioType">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>fldPortfolioType</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="GetDefaultReportDate">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT MAX(fldDate) FROM ExportArea_Export_Portfolio_Holdings WHERE datediff(d, 0, fldDate) % 7 NOT IN (5,6)</CommandText>
+        <DataSourceName>VPD_RoP</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="ID">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField />
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="PortfolioClass">
+      <Query>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>sp_RiskReports_GetPortfolioClass</CommandText>
+        <DataSourceName>VPD_RoP</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="fldPortfolioClass">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>fldPortfolioClass</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="GetCurrencies">
+      <Query>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>sp_RiskReports_GetCurrencies</CommandText>
+        <DataSourceName>VPD_RoP</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="Currency_ShortName">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Currency_ShortName</DataField>
+        </Field>
+        <Field Name="Currency_SysID">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Currency_SysID</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="GetBestExecutionData">
+      <Query>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>sp_RiskReports_GetBestExecutionReport_FixedIncome</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@ReportDate">
+            <Value>=Parameters!ReportDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@StartDate">
+            <Value>=Parameters!StartDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Portfolio">
+            <Value>=Parameters!Portfolio.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Filter">
+            <Value>=Parameters!Filter.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>VPD_RoP</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="PortfolioName">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>PortfolioName</DataField>
+        </Field>
+        <Field Name="ISIN">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ISIN</DataField>
+        </Field>
+        <Field Name="SecurityName">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>SecurityName</DataField>
+        </Field>
+        <Field Name="SecurityID">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>SecurityID</DataField>
+        </Field>
+        <Field Name="fldBroker">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>fldBroker</DataField>
+        </Field>
+        <Field Name="TransactionID">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>TransactionID</DataField>
+        </Field>
+        <Field Name="TransactionType">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>TransactionType</DataField>
+        </Field>
+        <Field Name="TradeDate">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>TradeDate</DataField>
+        </Field>
+        <Field Name="SettlementDate">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>SettlementDate</DataField>
+        </Field>
+        <Field Name="TreadeCurrency">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>TreadeCurrency</DataField>
+        </Field>
+        <Field Name="Quantity">
+          <rd:TypeName>System.Double</rd:TypeName>
+          <DataField>Quantity</DataField>
+        </Field>
+        <Field Name="TradePrice">
+          <rd:TypeName>System.Double</rd:TypeName>
+          <DataField>TradePrice</DataField>
+        </Field>
+        <Field Name="internalTransaction">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>InternalTransaction</DataField>
+        </Field>
+        <Field Name="Decalog_Price">
+          <rd:TypeName>System.Double</rd:TypeName>
+          <DataField>Decalog_Price</DataField>
+        </Field>
+        <Field Name="JPM_Price">
+          <rd:TypeName>System.Double</rd:TypeName>
+          <DataField>JPM_Price</DataField>
+        </Field>
+        <Field Name="MVofTotal">
+          <rd:TypeName>System.Double</rd:TypeName>
+          <DataField>MVofTotal</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Code />
+  <Width>11.54492in</Width>
+  <InteractiveHeight>15in</InteractiveHeight>
+  <Language>en-US</Language>
+  <PageFooter>
+    <ReportItems>
+      <Textbox Name="textbox27">
+        <Left>13.90476cm</Left>
+        <Top>0.12698cm</Top>
+        <rd:DefaultName>textbox27</rd:DefaultName>
+        <Width>2.53968cm</Width>
+        <Style>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.63492cm</Height>
+        <Value>=Globals!PageNumber</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>1.01587cm</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+  </PageFooter>
+  <TopMargin>0.03in</TopMargin>
+  <PageHeight>8.5in</PageHeight>
+</Report>

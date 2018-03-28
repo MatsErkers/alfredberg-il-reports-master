@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>ODEN_Report</DataSourceReference>
+      <CommandText>SELECT
+  Issuer.Id AS [Issuer Id]
+  ,Issuer.CodeSourceId AS [Issuer CodeSourceId]
+  ,Issuer.DataSourceId
+  ,Issuer.SysCreatedAt
+  ,Issuer.SysChangedAt
+  ,Issuer.SysJobId
+  ,Issuer.SourceExtractionTS
+  ,Issuer.IssuerName
+  ,Issuer.CountryRisk
+  ,Issuer.CountryDomicile
+  ,Issuer.CountryIncorporation
+  ,Issuer.Leicode
+  ,Issuer.BloombergGlobalCompany
+  ,Issuer.BloombergTicker
+  ,Issuer.ParentCode
+  ,Issuer.ParentCodeSourceId
+  ,Issuer.UltimateParentCode
+  ,Issuer.UltimateParentCodeSourceId
+  ,Issuer.HashKey
+  ,IssuerCode.Id AS [IssuerCode Id]
+  ,IssuerCode.CodeSourceId AS [IssuerCode CodeSourceId]
+  ,IssuerCode.Code
+FROM
+  Issuer
+  INNER JOIN IssuerCode
+    ON Issuer.Id = IssuerCode.Id</CommandText>
+      <rd:DesignerState>
+        <QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational">
+          <AutoJoin>False</AutoJoin>
+          <SelectedColumns>
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="Id" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="CodeSourceId" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="DataSourceId" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="SysCreatedAt" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="SysChangedAt" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="SysJobId" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="SourceExtractionTS" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="IssuerName" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="CountryRisk" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="CountryDomicile" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="CountryIncorporation" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="Leicode" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="BloombergGlobalCompany" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="BloombergTicker" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="ParentCode" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="ParentCodeSourceId" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="UltimateParentCode" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="UltimateParentCodeSourceId" />
+            <ColumnExpression ColumnOwner="Issuer" ColumnName="HashKey" />
+            <ColumnExpression ColumnOwner="IssuerCode" ColumnName="Id" />
+            <ColumnExpression ColumnOwner="IssuerCode" ColumnName="CodeSourceId" />
+            <ColumnExpression ColumnOwner="IssuerCode" ColumnName="Code" />
+          </SelectedColumns>
+          <Joins>
+            <Join Type="CROSS JOIN" ColumnOwner="Issuer" />
+            <Join Type="INNER JOIN" ColumnOwner="IssuerCode">
+              <On>
+                <From ColumnOwner="Issuer" ColumnName="Id" />
+                <To ColumnOwner="IssuerCode" ColumnName="Id" />
+              </On>
+            </Join>
+          </Joins>
+        </QueryDefinition>
+      </rd:DesignerState>
+    </Query>
+    <Fields>
+      <Field Name="Issuer_Id">
+        <DataField>Issuer Id</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Issuer_CodeSourceId">
+        <DataField>Issuer CodeSourceId</DataField>
+        <rd:TypeName>System.Int16</rd:TypeName>
+      </Field>
+      <Field Name="DataSourceId">
+        <DataField>DataSourceId</DataField>
+        <rd:TypeName>System.Int16</rd:TypeName>
+      </Field>
+      <Field Name="SysCreatedAt">
+        <DataField>SysCreatedAt</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="SysChangedAt">
+        <DataField>SysChangedAt</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="SysJobId">
+        <DataField>SysJobId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="SourceExtractionTS">
+        <DataField>SourceExtractionTS</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="IssuerName">
+        <DataField>IssuerName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CountryRisk">
+        <DataField>CountryRisk</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CountryDomicile">
+        <DataField>CountryDomicile</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CountryIncorporation">
+        <DataField>CountryIncorporation</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Leicode">
+        <DataField>Leicode</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="BloombergGlobalCompany">
+        <DataField>BloombergGlobalCompany</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="BloombergTicker">
+        <DataField>BloombergTicker</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="ParentCode">
+        <DataField>ParentCode</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="ParentCodeSourceId">
+        <DataField>ParentCodeSourceId</DataField>
+        <rd:TypeName>System.Int16</rd:TypeName>
+      </Field>
+      <Field Name="UltimateParentCode">
+        <DataField>UltimateParentCode</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="UltimateParentCodeSourceId">
+        <DataField>UltimateParentCodeSourceId</DataField>
+        <rd:TypeName>System.Int16</rd:TypeName>
+      </Field>
+      <Field Name="HashKey">
+        <DataField>HashKey</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="IssuerCode_Id">
+        <DataField>IssuerCode Id</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="IssuerCode_CodeSourceId">
+        <DataField>IssuerCode CodeSourceId</DataField>
+        <rd:TypeName>System.Int16</rd:TypeName>
+      </Field>
+      <Field Name="Code">
+        <DataField>Code</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

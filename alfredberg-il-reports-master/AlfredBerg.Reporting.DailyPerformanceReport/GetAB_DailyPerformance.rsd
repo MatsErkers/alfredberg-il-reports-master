@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet3">
+    <Query>
+      <DataSourceReference>ODEN_Reports</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@Date">
+          <DefaultValue>02/27/2018 00:00:00</DefaultValue>
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Date</rd:DbType>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandType>StoredProcedure</CommandType>
+      <CommandText>report.GetAB_DailyPerformance</CommandText>
+      <rd:DesignerState>
+        <QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational">
+          <Functions>
+            <SProc ColumnOwner="GetAB_DailyPerformance" Schema="report">
+              <Parameter Name="@Date">
+                <Value>02/27/2018 00:00:00</Value>
+              </Parameter>
+            </SProc>
+          </Functions>
+          <SelectedColumns>
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="Name" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="CurrencyCode" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="PortfolioType" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="AssetClass" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="Country" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="SCName" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="SCFirstNavDate" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="MV" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="DailySubs" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="DailyReds" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="DailyFlow" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="MTDSubs" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="MTDReds" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="MTDFlow" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="YTDSubs" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="YTDReds" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="YTDFlow" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="ShareClassId" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="DailyGoFReturn" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="BMDailyReturn" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="ExcessDailyGoFReturn" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="MTDGoFReturn" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="BMMTDReturn" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="ExcessMTDGoFReturn" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="YTDGoFReturn" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="BMYTDReturn" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_DailyPerformance" ColumnName="ExcessYTDGoFReturn" />
+          </SelectedColumns>
+        </QueryDefinition>
+      </rd:DesignerState>
+    </Query>
+    <Fields>
+      <Field Name="Name">
+        <DataField>Name</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CurrencyCode">
+        <DataField>CurrencyCode</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="PortfolioType">
+        <DataField>PortfolioType</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="AssetClass">
+        <DataField>AssetClass</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Country">
+        <DataField>Country</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="SCName">
+        <DataField>SCName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="SCFirstNavDate">
+        <DataField>SCFirstNavDate</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="MV">
+        <DataField>MV</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="MVSEK">
+        <DataField>MVSEK</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="DailyFlow">
+        <DataField>DailyFlow</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="DailyFlowSEK">
+        <DataField>DailyFlowSEK</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="MTDFlowSEK">
+        <DataField>MTDFlowSEK</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="MTDFlow">
+        <DataField>MTDFlow</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="YTDFlowSEK">
+        <DataField>YTDFlowSEK</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="YTDFlow">
+        <DataField>YTDFlow</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="ShareClassId">
+        <DataField>ShareClassId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="DailyGoFReturn">
+        <DataField>DailyGoFReturn</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="BMDailyReturn">
+        <DataField>BMDailyReturn</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="ExcessDailyGoFReturn">
+        <DataField>ExcessDailyGoFReturn</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="MTDGoFReturn">
+        <DataField>MTDGoFReturn</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="BMMTDReturn">
+        <DataField>BMMTDReturn</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="ExcessMTDGoFReturn">
+        <DataField>ExcessMTDGoFReturn</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="YTDGoFReturn">
+        <DataField>YTDGoFReturn</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="BMYTDReturn">
+        <DataField>BMYTDReturn</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="ExcessYTDGoFReturn">
+        <DataField>ExcessYTDGoFReturn</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

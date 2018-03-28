@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>ODEN_Report</DataSourceReference>
+      <CommandText>SELECT
+  report.Report.[Language]
+  ,report.Report.ReportId AS [Report ReportId]
+  ,report.ReportTemplate.ReportId AS [ReportTemplate ReportId]
+  ,report.ReportTemplate.PortfolioId
+  ,report.ReportText.ReportId AS [ReportText ReportId]
+  ,report.ReportText.TextId
+  ,report.ReportText.Text
+FROM
+  report.ReportText
+  INNER JOIN report.Report
+    ON report.ReportText.ReportId = report.Report.ReportId
+  INNER JOIN report.ReportTemplate
+    ON report.Report.ReportId = report.ReportTemplate.ReportId</CommandText>
+      <rd:DesignerState>
+        <QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational">
+          <AutoJoin>False</AutoJoin>
+          <SelectedColumns>
+            <ColumnExpression Schema="report" ColumnOwner="Report" ColumnName="Language" />
+            <ColumnExpression Schema="report" ColumnOwner="Report" ColumnName="ReportId" />
+            <ColumnExpression Schema="report" ColumnOwner="ReportTemplate" ColumnName="ReportId" />
+            <ColumnExpression Schema="report" ColumnOwner="ReportTemplate" ColumnName="PortfolioId" />
+            <ColumnExpression Schema="report" ColumnOwner="ReportText" ColumnName="ReportId" />
+            <ColumnExpression Schema="report" ColumnOwner="ReportText" ColumnName="TextId" />
+            <ColumnExpression Schema="report" ColumnOwner="ReportText" ColumnName="Text" />
+          </SelectedColumns>
+          <Joins>
+            <Join Type="CROSS JOIN" ColumnOwner="ReportText" Schema="report" />
+            <Join Type="INNER JOIN" ColumnOwner="Report" Schema="report">
+              <On>
+                <From ColumnOwner="ReportText" Schema="report" ColumnName="ReportId" />
+                <To ColumnOwner="Report" Schema="report" ColumnName="ReportId" />
+              </On>
+            </Join>
+            <Join Type="INNER JOIN" ColumnOwner="ReportTemplate" Schema="report">
+              <On>
+                <From ColumnOwner="Report" Schema="report" ColumnName="ReportId" />
+                <To ColumnOwner="ReportTemplate" Schema="report" ColumnName="ReportId" />
+              </On>
+            </Join>
+          </Joins>
+        </QueryDefinition>
+      </rd:DesignerState>
+    </Query>
+    <Fields>
+      <Field Name="Language">
+        <DataField>Language</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Report_ReportId">
+        <DataField>Report ReportId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="ReportTemplate_ReportId">
+        <DataField>ReportTemplate ReportId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="PortfolioId">
+        <DataField>PortfolioId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="ReportText_ReportId">
+        <DataField>ReportText ReportId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="TextId">
+        <DataField>TextId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Text">
+        <DataField>Text</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

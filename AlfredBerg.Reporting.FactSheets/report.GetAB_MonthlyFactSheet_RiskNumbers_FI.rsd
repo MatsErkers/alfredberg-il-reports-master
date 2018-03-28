@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>ODEN_Report</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@Date">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Date</rd:DbType>
+        </DataSetParameter>
+        <DataSetParameter Name="@ShareClass">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Int32</rd:DbType>
+        </DataSetParameter>
+        <DataSetParameter Name="@Language">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>AnsiStringFixedLength</rd:DbType>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandType>StoredProcedure</CommandType>
+      <CommandText>report.GetAB_MonthlyFactSheet_RiskNumbers_FI</CommandText>
+      <rd:DesignerState>
+        <QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational">
+          <Functions>
+            <SProc ColumnOwner="GetAB_MonthlyFactSheet_RiskNumbers_FI" Schema="report">
+              <Parameter Name="@Date">
+                <Null />
+              </Parameter>
+              <Parameter Name="@ShareClass">
+                <Null />
+              </Parameter>
+              <Parameter Name="@Language">
+                <Null />
+              </Parameter>
+            </SProc>
+          </Functions>
+          <SelectedColumns>
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_MonthlyFactSheet_RiskNumbers_FI" ColumnName="Id" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_MonthlyFactSheet_RiskNumbers_FI" ColumnName="Title" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_MonthlyFactSheet_RiskNumbers_FI" ColumnName="ReportDate" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_MonthlyFactSheet_RiskNumbers_FI" ColumnName="RiskNumberDate" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_MonthlyFactSheet_RiskNumbers_FI" ColumnName="Duration" />
+            <ColumnExpression Schema="report" ColumnOwner="GetAB_MonthlyFactSheet_RiskNumbers_FI" ColumnName="SpreadDuration" />
+          </SelectedColumns>
+        </QueryDefinition>
+      </rd:DesignerState>
+    </Query>
+    <Fields>
+      <Field Name="Id">
+        <DataField>Id</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Title">
+        <DataField>Title</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="ReportDate">
+        <DataField>ReportDate</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="RiskNumberDate">
+        <DataField>RiskNumberDate</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="Duration">
+        <DataField>Duration</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="SpreadDuration">
+        <DataField>SpreadDuration</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

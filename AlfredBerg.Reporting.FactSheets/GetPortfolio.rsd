@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet2">
+    <Query>
+      <DataSourceReference>ODEN_Report</DataSourceReference>
+      <CommandText>SELECT
+  Portfolio.Id AS [Portfolio Id]
+  ,ShareClass.PortfolioId
+  ,ShareClass.Name AS [ShareClass Name]
+  ,ShareClass.Id AS [ShareClass Id]
+  ,Portfolio.Name AS [Portfolio Name]
+  ,Portfolio.DataSourceId
+FROM
+  ShareClass
+  INNER JOIN Portfolio
+    ON ShareClass.PortfolioId = Portfolio.Id AND ShareClass.DataSourceId = Portfolio.DataSourceId</CommandText>
+      <rd:DesignerState>
+        <QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational">
+          <AutoJoin>False</AutoJoin>
+          <SelectedColumns>
+            <ColumnExpression ColumnOwner="Portfolio" ColumnName="Id" />
+            <ColumnExpression ColumnOwner="ShareClass" ColumnName="PortfolioId" />
+            <ColumnExpression ColumnOwner="ShareClass" ColumnName="Name" />
+            <ColumnExpression ColumnOwner="ShareClass" ColumnName="Id" />
+            <ColumnExpression ColumnOwner="Portfolio" ColumnName="Name" />
+            <ColumnExpression ColumnOwner="Portfolio" ColumnName="DataSourceId" />
+          </SelectedColumns>
+          <Joins>
+            <Join Type="CROSS JOIN" ColumnOwner="ShareClass" />
+            <Join Type="INNER JOIN" ColumnOwner="Portfolio">
+              <On>
+                <From ColumnOwner="ShareClass" ColumnName="PortfolioId" />
+                <To ColumnOwner="Portfolio" ColumnName="Id" />
+              </On>
+              <On>
+                <From ColumnOwner="ShareClass" ColumnName="DataSourceId" />
+                <To ColumnOwner="Portfolio" ColumnName="DataSourceId" />
+              </On>
+            </Join>
+          </Joins>
+        </QueryDefinition>
+      </rd:DesignerState>
+    </Query>
+    <Fields>
+      <Field Name="Portfolio_Id">
+        <DataField>Portfolio Id</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="PortfolioId">
+        <DataField>PortfolioId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="ShareClass_Name">
+        <DataField>ShareClass Name</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="ShareClass_Id">
+        <DataField>ShareClass Id</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Portfolio_Name">
+        <DataField>Portfolio Name</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="DataSourceId">
+        <DataField>DataSourceId</DataField>
+        <rd:TypeName>System.Int16</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>
